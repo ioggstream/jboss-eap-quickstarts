@@ -46,7 +46,7 @@
         <version.jboss.maven.plugin>7.4.Final</version.jboss.maven.plugin>
         
         <!-- Define the version of the JBoss BOMs we want to import to specify tested stacks. -->
-        <version.jboss.bom.eap>6.2.0-build-7</version.jboss.bom.eap>
+        <version.jboss.bom.eap>6.2.4.GA</version.jboss.bom.eap>
 
         <!-- other plugin versions -->
         <version.war.plugin>2.1.1</version.war.plugin>
@@ -130,6 +130,9 @@
                 <version>${version.war.plugin}</version>
                 <configuration>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
+                     <manifestEntries>
+               <Dependencies>asm.asm,javax.xml.soap.api</Dependencies>
+            </manifestEntries>
                 </configuration>
             </plugin>
             <!-- JBoss AS plugin to deploy war -->

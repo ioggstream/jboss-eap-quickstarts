@@ -14,27 +14,45 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jboss.as.quickstarts.wshelloworld;
+package org.jboss.as.quickstarts.wshandler;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.jws.HandlerChain;
 import javax.jws.WebService;
 
 /**
- * The implementation of the HelloWorld JAX-WS Web Service.
+ * The implementation of the Greeting JAX-WS Web Service.
  * 
- * @author lnewson@redhat.com
+ * As interfaces are optional we're not using them in this case.
+ *  Having decorated the class with @WebService, every public method is 
+ *  exposed by default.
+ * 
+ * This service is not defined in web.xml: the endpoint will be inferred
+ *  by the container using ${webapp-name}/${serviceName}
+ *  
+ *  You can test with python-suds with:
+	from suds.client import Client
+	c= Client('http://172.17.0.23:8080/jboss-helloworld-ws/GreetingService?wsdl')
+	c.service.sayHello()
+	c.service.sayHello('foo')
+	c.service.sayHelloToName('foo')
+	c.service.sayHelloToNames(['foo','bar'])
+
+ * @author rpolli@redhat.com
  */
-@WebService(serviceName = "HelloWorldService", 
-	portName = "HelloWorld", 
-	name = "HelloWorld", 
-	endpointInterface = "org.jboss.as.quickstarts.wshelloworld.HelloWorldService",
-	targetNamespace = "http://www.jboss.org/jbossas/quickstarts/wshelloworld/HelloWorld")
-public class HelloWorldServiceImpl implements HelloWorldService  {
+@WebService(serviceName = "HandledService", 
+	portName = "Handled", 
+	name = "Handled", 
+	targetNamespace = "http://www.jboss.org/jbossas/quickstarts/wshandler/Handled")
+@HandlerChain(file="jaxws-handlers.xml")
+public class HandledServiceImpl   {
+	public static final String NS1 = "http://www.jboss.org/jbossas/quickstarts/wshandler/Handled";
+	public static final String NS0 = "ns0";
 
 	public String sayHello() {
-		return "Hello World!";
+		return "Greetings!";
 	}
 
 	public String sayHelloToName(final String name) {
