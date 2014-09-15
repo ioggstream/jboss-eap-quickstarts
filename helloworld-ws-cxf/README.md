@@ -83,9 +83,11 @@ _NOTE: The following commands assume you have configured your Maven user setting
 Investigate the Console Output
 ----------------------------
 
-The following expected output should appear. The output shows what was said to the Web Service by the client and the responses it received.
+The following expected output should appear in both 1 and 2
 
-    WSDL Deployment URL: http://localhost:8080/jboss-helloworld-ws/HelloWorldService?wsdl
+1- The output shows what was said to the Web Service by the client and the responses it received.
+
+    WSDL Deployment URL: http://localhost:8080/jboss-helloworld-ws-cxf/HelloWorldService?wsdl
     [Client] Requesting the WebService to say Hello.
     [WebService] Hello World!
     [Client] Requesting the WebService to say Hello to John.
@@ -93,6 +95,9 @@ The following expected output should appear. The output shows what was said to t
     [Client] Requesting the WebService to say Hello to John, Mary and Mark.
     [WebService] Hello John, Mary & Mark!
     Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.988 sec
+    
+2- Moreover you should see in the logs a line reporting the invoked method.
+12:46:41,696 INFO  [stdout] Operation name: sayHello
 
 
 Run the Quickstart in JBoss Developer Studio or Eclipse

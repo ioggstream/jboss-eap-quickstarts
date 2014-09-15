@@ -22,11 +22,14 @@ import java.util.List;
 import javax.jws.WebService;
 
 /**
- * The implementation of the HelloWorld JAX-WS Web Service.
+ * The implementation of the HelloWorld JAX-WS Web Service with an added CXF Interceptor
  * 
  * @author lnewson@redhat.com
+ * @author rpolli@redhat.com
  */
-@WebService(serviceName = "HelloWorldService", portName = "HelloWorld", name = "HelloWorld", endpointInterface = "org.jboss.as.quickstarts.wshelloworld.HelloWorldService", targetNamespace = "http://www.jboss.org/jbossas/quickstarts/wshelloworld/HelloWorld")
+@org.apache.cxf.interceptor.InInterceptors (interceptors = {
+		"org.jboss.as.quickstarts.wscxfhelloworld.MyInInterceptor"})
+@WebService(serviceName = "HelloWorldService", portName = "HelloWorld", name = "HelloWorld", endpointInterface = "org.jboss.as.quickstarts.wscxfhelloworld.HelloWorldService", targetNamespace = "http://www.jboss.org/jbossas/quickstarts/wscxfhelloworld/HelloWorld")
 public class HelloWorldServiceImpl implements HelloWorldService {
 
     @Override
