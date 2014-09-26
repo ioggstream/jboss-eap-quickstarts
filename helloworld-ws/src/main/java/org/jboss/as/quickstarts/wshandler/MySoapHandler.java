@@ -50,8 +50,6 @@ public class MySoapHandler implements SOAPHandler<SOAPMessageContext> {
 	@Override
 	public boolean handleMessage(SOAPMessageContext mCtx) {
 		SOAPMessage msg = mCtx.getMessage();
-		log.warning("MySoapHandler: print msg:" + msg);
-
 		Boolean outbound = (Boolean) mCtx
 				.get(MessageContext.MESSAGE_OUTBOUND_PROPERTY);
 
@@ -77,7 +75,6 @@ public class MySoapHandler implements SOAPHandler<SOAPMessageContext> {
 		} catch (SOAPException e) {
 			throw new RuntimeException("MySoapHandler throws:", e);
 		}
-		log.warning("MySoapHandler: print msg:" + body);
 		return true; // process following handlers
 	}
 
