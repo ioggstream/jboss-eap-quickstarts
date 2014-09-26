@@ -16,6 +16,13 @@ import javax.xml.ws.handler.soap.SOAPMessageContext;
  *  - when a soap call is incoming;
  *  - when a soap call is departing.
  * 
+ * You can add this to the default handler-chain via the
+ *  jboss-cli 
+ *  $ cd /subsystem=webservices/endpoint-config=Standard-Endpoint-Config/
+ *  $ /pre-handler-chain=my-handlers:add(protocol-bindings="##SOAP11_HTTP")
+ *  $ /pre-handler-chain=my-handlers/handler=addtag-handler:add(class="org.jboss.as.quickstarts.wshandler.LoggingHandler")
+ *  $ :reload
+ * 
  * @author rpolli@redhat.com
  *
  */
@@ -31,6 +38,10 @@ public class LoggingHandler implements SOAPHandler<SOAPMessageContext> {
 	 */
 	@Override
 	public void close(MessageContext mCtx) {
+	    // Cleanup the mCtx. This is done here
+	    // so the mCtx is not emptied unless we've finished
+	    // to play.
+	    mCtx.remove("time");
 	}
 
 	/**
@@ -52,17 +63,14 @@ public class LoggingHandler implements SOAPHandler<SOAPMessageContext> {
 	 */
 	@Override
 	public boolean handleMessage(SOAPMessageContext mCtx) {
-		Boolean outbound = (Boolean) mCtx
-				.get(MessageContext.MESSAGE_OUTBOUND_PROPERTY);
 		Calendar cal = Calendar.getInstance();
 		
-		if (outbound) {
+		if (mCtx.get("time") == null) {
+		    mCtx.put("time", (Long) cal.getTimeInMillis());
+		} else  {
 			Long elapsed = cal.getTimeInMillis() - (Long) mCtx.get("time");
 			log.warning("Elapsed time: " + elapsed);
-		} else { 
-			mCtx.put("time", (Long) cal.getTimeInMillis());
 		} 
-
 		return true; // process following handlers
 	}
 

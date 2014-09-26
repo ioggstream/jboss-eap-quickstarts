@@ -19,7 +19,21 @@ import javax.xml.ws.handler.soap.SOAPMessageContext;
 
 
 
-public class MySoapHandler implements SOAPHandler<SOAPMessageContext> {
+/**
+ * A SoapHandler is invoked twice for every transaction:
+ *  - when a soap call is incoming;
+ *  - when a soap call is departing.
+ * 
+ * You can add this to the default handler-chain via the
+ *  jboss-cli 
+ *  $ cd /subsystem=webservices/endpoint-config=Standard-Endpoint-Config/
+ *  $ /pre-handler-chain=my-handlers:add(protocol-bindings="##SOAP11_HTTP")
+ *  $ /pre-handler-chain=my-handle/wers/handler=addtag-handler:add(class="org.jboss.as.quickstarts.wshandler.LoggingHandler")
+ *  $ :reload
+ * 
+ * @author rpolli@redhat.com
+ *
+ */public class MySoapHandler implements SOAPHandler<SOAPMessageContext> {
 	Logger log = Logger.getLogger("org.jboss.as.quickstarts.wshandler");
 	SOAPFactory factory;
 

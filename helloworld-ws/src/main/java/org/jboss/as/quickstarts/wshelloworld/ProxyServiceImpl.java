@@ -18,10 +18,10 @@ package org.jboss.as.quickstarts.wshelloworld;
 
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.jws.WebService;
+import javax.xml.ws.WebServiceRef;
 
 /**
  * The implementation of a Proxy JAX-WS Web Service
@@ -45,6 +45,7 @@ public class ProxyServiceImpl implements HelloWorldService  {
      */
     private static final String DEFAULT_SERVER_URL = "http://localhost:8080/";
     
+
 	private Client getClient(){
         try {
             return new Client(new URL(DEFAULT_SERVER_URL + "/" + APP_NAME + "/?wsdl"));

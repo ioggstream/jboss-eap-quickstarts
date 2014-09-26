@@ -42,11 +42,12 @@ import javax.jws.WebService;
 
  * @author rpolli@redhat.com
  */
-@WebService(serviceName = "HandledService", 
+/*@WebService(serviceName = "HandledService", 
 	portName = "Handled", 
 	name = "Handled", 
 	targetNamespace = "http://www.jboss.org/jbossas/quickstarts/wshandler/Handled")
 @HandlerChain(file="jaxws-handlers.xml")
+*/
 public class HandledServiceImpl   {
 	public static final String NS1 = "http://www.jboss.org/jbossas/quickstarts/wshandler/Handled";
 	public static final String NS0 = "ns0";
