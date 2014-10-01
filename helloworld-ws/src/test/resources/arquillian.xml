@@ -21,11 +21,21 @@
         http://jboss.org/schema/arquillian/arquillian_1_0.xsd">
 
     <!-- Example configuration for a managed JBoss EAP 6 instance -->
-    <container qualifier="jbossas-managed" default="true">
+    <container qualifier="jbossas-managed" default="false">
         <!-- By default, arquillian will use the JBOSS_HOME environment variable.  Alternatively, the configuration below can be uncommented. -->
         <!--<configuration> -->
         <!--<property name="jbossHome">/path/to/jboss/as</property> -->
         <!--</configuration> -->
     </container>
-
+    <container qualifier="jboss" default="true"> <!-- 172.16.206.208 -->
+        <configuration>
+            <property name="managementAddress">172.16.206.208</property>
+            <property name="managementPort">9999</property>
+            <property name="username">admin</property>
+            <property name="password">Admin#1234</property>
+        </configuration>
+    </container>    
+	<engine>
+		<property name="deploymentExportPath">target/deployments</property>
+	</engine>
 </arquillian>

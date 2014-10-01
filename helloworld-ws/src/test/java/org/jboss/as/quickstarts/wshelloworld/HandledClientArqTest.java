@@ -24,10 +24,13 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.test.api.ArquillianResource;
 import org.jboss.as.quickstarts.spring.MyBean;
+import org.jboss.as.quickstarts.wshandler.MySoapHandler;
 import org.jboss.as.quickstarts.wshelloworld.HelloWorldService;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
@@ -41,7 +44,8 @@ import org.junit.runner.RunWith;
  * @author lnewson@redhat.com
  */
 @RunWith(Arquillian.class)
-public class ClientArqTest {
+public class HandledClientArqTest {
+    private static final String WEBAPP_RESOURCES = "src/main/resources";
     /**
      * The location of the WebApp source folder so we know where to find the web.xml when deploying using Arquillian.
      */
@@ -53,22 +57,25 @@ public class ClientArqTest {
     /**
      * The path of the WSDL endpoint in relation to the deployed web application.
      */
-    private static final String WSDL_PATH = "HelloWorldService?wsdl";
+    private static final String WSDL_PATH = "HandledService?wsdl";
 
     @ArquillianResource
     private URL deploymentUrl;
 
-    private HelloWorldService client;
+    private HandledClient client;
 
     @Deployment(testable = false)
     public static WebArchive createDeployment() {
         WebArchive war = ShrinkWrap.create(WebArchive.class, APP_NAME + ".war")
-                .addClasses(HelloWorldService.class, Client.class, HelloWorldServiceImpl.class)
-                .addClass(MyBean.class)
-                .addAsManifestResource(new File(WEBAPP_SRC, "MANIFEST.MF"))
-                .addAsWebInfResource(new File(WEBAPP_SRC, "WEB-INF/web.xml"))
-                .addAsWebInfResource(new File(WEBAPP_SRC, "WEB-INF/applicationContext.xml"))
-                ;
+            .addPackage(HelloWorldService.class.getPackage())
+            .addPackage(MySoapHandler.class.getPackage())
+            .addClass(MyBean.class)
+            .addAsManifestResource(new File(WEBAPP_SRC, "META-INF/MANIFEST.MF"))
+            .addAsWebInfResource(new File(WEBAPP_RESOURCES,"org/jboss/as/quickstarts/wshelloworld/jaxws-handlers.xml"), "classes/org/jboss/as/quickstarts/wshelloworld/jaxws-handlers.xml" )
+            .addAsWebInfResource(new File(WEBAPP_SRC, "WEB-INF/web.xml"))
+            .addAsWebInfResource(new File(WEBAPP_SRC, "WEB-INF/applicationContext.xml"))
+            ;
+        
         // And now print its content
         // - the jar name is an UUID 
         boolean verbose = true;
@@ -80,7 +87,7 @@ public class ClientArqTest {
     @Before
     public void setup() {
         try {
-            client = new Client(new URL(deploymentUrl, WSDL_PATH));
+            client = new HandledClient(new URL(deploymentUrl, WSDL_PATH));
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
@@ -92,7 +99,7 @@ public class ClientArqTest {
 
         // Get a response from the WebService
         final String response = client.sayHello();
-        assertEquals(response, "Hello World!");
+        assertEquals( "Hello World!" + MySoapHandler.TOKEN, response);
 
         System.out.println("[WebService] " + response);
 
@@ -104,7 +111,7 @@ public class ClientArqTest {
 
         // Get a response from the WebService
         final String response = client.sayHelloToName("John");
-        assertEquals(response, "Hello John!");
+        assertEquals("Hello John!" + MySoapHandler.TOKEN, response);
 
         System.out.println("[WebService] " + response);
     }
@@ -121,7 +128,7 @@ public class ClientArqTest {
 
         // Get a response from the WebService
         final String response = client.sayHelloToNames(names);
-        assertEquals(response, "Hello John, Mary & Mark!");
+        assertEquals("Hello John, Mary & Mark!" + MySoapHandler.TOKEN, response);
 
         System.out.println("[WebService] " + response);
     }

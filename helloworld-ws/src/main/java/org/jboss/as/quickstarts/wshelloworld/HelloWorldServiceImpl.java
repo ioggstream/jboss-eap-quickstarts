@@ -19,7 +19,13 @@ package org.jboss.as.quickstarts.wshelloworld;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.Resource;
 import javax.jws.WebService;
+
+import org.jboss.as.quickstarts.spring.MyBean;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 /**
  * The implementation of the HelloWorld JAX-WS Web Service.
@@ -27,9 +33,19 @@ import javax.jws.WebService;
  * @author lnewson@redhat.com
  */
 @WebService(serviceName = "HelloWorldService", portName = "HelloWorld", name = "HelloWorld", endpointInterface = "org.jboss.as.quickstarts.wshelloworld.HelloWorldService", targetNamespace = "http://www.jboss.org/jbossas/quickstarts/wshelloworld/HelloWorld")
-public class HelloWorldServiceImpl implements HelloWorldService  {
+public class HelloWorldServiceImpl extends SpringBeanAutowiringSupport implements HelloWorldService  {
+
+    /* The springContext is injected via Spring extending SpringBeanAutowiringSupport and WEB-INF/web.xml:listener-class */
+    @Resource
+    private ApplicationContext springContext;
+
+    @Autowired
+    private MyBean myBean;
+
     @Override
     public String sayHello() {
+        if (myBean == null) throw new RuntimeException("myBean");
+        if (springContext == null) throw new RuntimeException("springContext");
         return "Hello World!";
     }
 

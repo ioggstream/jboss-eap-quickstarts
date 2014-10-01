@@ -19,8 +19,12 @@ package org.jboss.as.quickstarts.wshelloworld;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.Resource;
 import javax.jws.HandlerChain;
 import javax.jws.WebService;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 
 /**
  * The implementation of the Handled JAX-WS Web Service.
@@ -28,11 +32,13 @@ import javax.jws.WebService;
  * @author lnewson@redhat.com
  */
 @WebService(serviceName = "HandledService", portName = "Handled", name = "Handled", endpointInterface = "org.jboss.as.quickstarts.wshelloworld.HandledService", targetNamespace = "http://www.jboss.org/jbossas/quickstarts/wshelloworld/Handled")
-//@HandlerChain(file="logging-handlers.xml")
+@HandlerChain(file="jaxws-handlers.xml")
 public class HandledServiceImpl implements HandledService  {
+    
+    
     @Override
     public String sayHello() {
-        return "Hello World!";
+        return String.format("Hello World! ");
     }
 
     @Override
