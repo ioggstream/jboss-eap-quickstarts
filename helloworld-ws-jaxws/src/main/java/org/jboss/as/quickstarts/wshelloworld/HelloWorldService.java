@@ -16,9 +16,6 @@
  */
 package org.jboss.as.quickstarts.wshelloworld;
 
-import java.util.List;
-
-import javax.jws.HandlerChain;
 import javax.jws.WebMethod;
 import javax.jws.WebService;
 
@@ -28,9 +25,9 @@ import javax.jws.WebService;
  * @author lnewson@redhat.com
  */
 
-@WebService(targetNamespace = "http://www.jboss.org/jbossas/quickstarts/wshelloworld/Handled")
-@HandlerChain(file="jaxws-handlers.xml")
-public interface HandledService  {
+@WebService(targetNamespace = "http://www.jboss.org/jbossas/quickstarts/wshelloworld/HelloWorld")
+public interface HelloWorldService {
+
     /**
      * Say hello as a response
      * 
@@ -38,23 +35,5 @@ public interface HandledService  {
      */
     @WebMethod
     public String sayHello();
-
-    /**
-     * Say hello to someone precisely
-     * 
-     * @param name The name of the person to say hello to
-     * @return the number of current bookings
-     */
-    @WebMethod
-    public String sayHelloToName(String name);
-
-    /**
-     * Say hello to a list of people
-     * 
-     * @param names The list of names to say hello to
-     * @return the number of current bookings
-     */
-    @WebMethod
-    public String sayHelloToNames(List<String> names);
 
 }

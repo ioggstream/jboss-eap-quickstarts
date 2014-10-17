@@ -16,32 +16,31 @@
  */
 package org.jboss.as.quickstarts.wshelloworld;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+
 import javax.xml.namespace.QName;
 import javax.xml.ws.Service;
 
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.List;
-
 /**
- * A Client stub to the Handled JAX-WS Web Service.
+ * A Client stub to the HelloWorld JAX-WS Web Service.
  * 
  * @author lnewson@redhat.com
  */
-public class HandledClient implements HandledService {
-    private HandledService handledService;
+public class Client implements HelloWorldService {
+    private HelloWorldService helloWorldService;
 
     /**
      * Default constructor
      * 
      * @param url The URL to the Hello World WSDL endpoint.
      */
-    public HandledClient(final URL wsdlUrl) {
-        QName serviceName = new QName("http://www.jboss.org/jbossas/quickstarts/wshelloworld/Handled", "HandledService");
+    public Client(final URL wsdlUrl) {
+        QName serviceName = new QName("http://wshelloworld.quickstarts.as.jboss.org/", "HelloWorldService");
 
         Service service = Service.create(wsdlUrl, serviceName);
-        handledService = service.getPort(HandledService.class);
-        assert (handledService != null);
+        helloWorldService = service.getPort(HelloWorldService.class);
+        assert (helloWorldService != null);
     }
     
     /**
@@ -50,7 +49,7 @@ public class HandledClient implements HandledService {
      * @param url The URL to the Hello World WSDL endpoint.
      * @throws MalformedURLException if the WSDL url is malformed.
      */
-    public HandledClient(final String url) throws MalformedURLException {
+    public Client(final String url) throws MalformedURLException {
         this(new URL(url));
     }
 
@@ -59,22 +58,6 @@ public class HandledClient implements HandledService {
      */
     @Override
     public String sayHello() {
-        return handledService.sayHello();
-    }
-
-    /**
-     * Gets the Web Service to say hello to someone
-     */
-    @Override
-    public String sayHelloToName(final String name) {
-        return handledService.sayHelloToName(name);
-    }
-
-    /**
-     * Gets the Web Service to say hello to a group of people
-     */
-    @Override
-    public String sayHelloToNames(final List<String> names) {
-        return handledService.sayHelloToNames(names);
+        return helloWorldService.sayHello();
     }
 }

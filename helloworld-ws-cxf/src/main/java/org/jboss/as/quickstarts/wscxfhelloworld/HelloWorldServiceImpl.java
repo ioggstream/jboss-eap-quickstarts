@@ -19,7 +19,10 @@ package org.jboss.as.quickstarts.wscxfhelloworld;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
 import javax.jws.WebService;
+
+import org.jboss.as.quickstarts.cdi.CDIBean;
 
 /**
  * The implementation of the HelloWorld JAX-WS Web Service with an added CXF Interceptor
@@ -32,9 +35,12 @@ import javax.jws.WebService;
 @WebService(serviceName = "HelloWorldService", portName = "HelloWorld", name = "HelloWorld", endpointInterface = "org.jboss.as.quickstarts.wscxfhelloworld.HelloWorldService", targetNamespace = "http://www.jboss.org/jbossas/quickstarts/wscxfhelloworld/HelloWorld")
 public class HelloWorldServiceImpl implements HelloWorldService {
 
+	@Inject
+	CDIBean bean;
+	
     @Override
     public String sayHello() {
-        return "Hello World!";
+        return "Hello World! " + bean;
     }
 
     @Override

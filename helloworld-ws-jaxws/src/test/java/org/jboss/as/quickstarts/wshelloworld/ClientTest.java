@@ -16,14 +16,11 @@
  */
 package org.jboss.as.quickstarts.wshelloworld;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 
-import org.jboss.as.quickstarts.wshelloworld.HelloWorldService;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -37,7 +34,7 @@ public class ClientTest {
     /**
      * The name of the WAR Archive that will be used by Arquillian to deploy the application.
      */
-    private static final String APP_NAME = "jboss-helloworld-ws";
+    private static final String APP_NAME = "jboss-helloworld-jaxws";
     /**
      * The path of the WSDL endpoint in relation to the deployed web application.
      */
@@ -107,31 +104,4 @@ public class ClientTest {
 
     }
 
-    @Test
-    public void testHelloName() {
-        System.out.println("[Client] Requesting the WebService to say Hello to John.");
-
-        // Get a response from the WebService
-        final String response = client.sayHelloToName("John");
-        assertEquals(response, "Hello John!");
-
-        System.out.println("[WebService] " + response);
-    }
-
-    @Test
-    public void testHelloNames() {
-        System.out.println("[Client] Requesting the WebService to say Hello to John, Mary and Mark.");
-
-        // Create the array of names for the WebService to say hello to.
-        final List<String> names = new ArrayList<String>();
-        names.add("John");
-        names.add("Mary");
-        names.add("Mark");
-
-        // Get a response from the WebService
-        final String response = client.sayHelloToNames(names);
-        assertEquals(response, "Hello John, Mary & Mark!");
-
-        System.out.println("[WebService] " + response);
-    }
 }

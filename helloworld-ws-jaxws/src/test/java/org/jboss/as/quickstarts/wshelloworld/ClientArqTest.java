@@ -16,19 +16,16 @@
  */
 package org.jboss.as.quickstarts.wshelloworld;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.test.api.ArquillianResource;
-import org.jboss.as.quickstarts.spring.MyBean;
-import org.jboss.as.quickstarts.wshelloworld.HelloWorldService;
+import org.jboss.as.quickstarts.cdi.MyBean;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Before;
@@ -49,11 +46,12 @@ public class ClientArqTest {
     /**
      * The name of the WAR Archive that will be used by Arquillian to deploy the application.
      */
-    private static final String APP_NAME = "jboss-helloworld-ws";
+    private static final String APP_NAME = "jboss-helloworld-jaxws";
     /**
      * The path of the WSDL endpoint in relation to the deployed web application.
      */
     private static final String WSDL_PATH = "HelloWorldService?wsdl";
+    private static final String RESOURCE_SRC = "src/main/resources";
 
     @ArquillianResource
     private URL deploymentUrl;
@@ -62,19 +60,11 @@ public class ClientArqTest {
 
     @Deployment(testable = false)
     public static WebArchive createDeployment() {
-        WebArchive war = ShrinkWrap.create(WebArchive.class, APP_NAME + ".war")
-                .addClasses(HelloWorldService.class, Client.class, HelloWorldServiceImpl.class)
-                .addClass(MyBean.class)
-                .addAsManifestResource(new File(WEBAPP_SRC, "MANIFEST.MF"))
+        return ShrinkWrap.create(WebArchive.class, APP_NAME + ".war")
+                .addPackage(HelloWorldService.class.getPackage())
+                .addPackage(MyBean.class.getPackage())
                 .addAsWebInfResource(new File(WEBAPP_SRC, "WEB-INF/web.xml"))
-                .addAsWebInfResource(new File(WEBAPP_SRC, "WEB-INF/applicationContext.xml"))
-                ;
-        // And now print its content
-        // - the jar name is an UUID 
-        boolean verbose = true;
-        System.out.println(war.toString(verbose));
-        return war;
-
+                .addAsResource(new File(RESOURCE_SRC,"cdi-chain.xml"));
     }
 
     @Before
@@ -93,36 +83,8 @@ public class ClientArqTest {
         // Get a response from the WebService
         final String response = client.sayHello();
         assertEquals(response, "Hello World!");
-
+        
         System.out.println("[WebService] " + response);
 
-    }
-
-    @Test
-    public void testHelloName() {
-        System.out.println("[Client] Requesting the WebService to say Hello to John.");
-
-        // Get a response from the WebService
-        final String response = client.sayHelloToName("John");
-        assertEquals(response, "Hello John!");
-
-        System.out.println("[WebService] " + response);
-    }
-
-    @Test
-    public void testHelloNames() {
-        System.out.println("[Client] Requesting the WebService to say Hello to John, Mary and Mark.");
-
-        // Create the array of names for the WebService to say hello to.
-        final List<String> names = new ArrayList<String>();
-        names.add("John");
-        names.add("Mary");
-        names.add("Mark");
-
-        // Get a response from the WebService
-        final String response = client.sayHelloToNames(names);
-        assertEquals(response, "Hello John, Mary & Mark!");
-
-        System.out.println("[WebService] " + response);
     }
 }

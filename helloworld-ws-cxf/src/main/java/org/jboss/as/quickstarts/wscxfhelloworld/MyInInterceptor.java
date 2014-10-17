@@ -17,6 +17,8 @@
 package org.jboss.as.quickstarts.wscxfhelloworld;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import org.apache.cxf.binding.soap.SoapMessage;
 import org.apache.cxf.binding.soap.interceptor.AbstractSoapInterceptor;
 import org.apache.cxf.headers.Header;
@@ -24,6 +26,7 @@ import org.apache.cxf.interceptor.Fault;
 import org.apache.cxf.message.Message;
 import org.apache.cxf.phase.Phase;
 import org.apache.cxf.service.model.MessageInfo;
+import org.jboss.as.quickstarts.cdi.CDIBean;
 
 
 /**
@@ -33,6 +36,9 @@ import org.apache.cxf.service.model.MessageInfo;
  */
 public class MyInInterceptor extends AbstractSoapInterceptor  {
 
+	@Inject
+	CDIBean bean;
+	
 	public MyInInterceptor() {
 		super(Phase.POST_LOGICAL);
 	}
@@ -43,7 +49,7 @@ public class MyInInterceptor extends AbstractSoapInterceptor  {
 
 	@Override
 	public void handleMessage(SoapMessage message) throws Fault {
-		System.out.println("Handling message" + message);
+		System.out.println("Handling message" + message.toString().replace("", ",\n"));
 
 		// Dump headers
 		List <Header> list = message.getHeaders();
@@ -56,6 +62,8 @@ public class MyInInterceptor extends AbstractSoapInterceptor  {
 		MessageInfo mi = (MessageInfo) inMessage.get("org.apache.cxf.service.model.MessageInfo");
 		String methodName = mi.getOperation().getInputName();	
 		System.out.println("Operation name: " + methodName);
+		System.out.println("CDI: "+ bean);
+		assert bean != null;
 	}
 
 }

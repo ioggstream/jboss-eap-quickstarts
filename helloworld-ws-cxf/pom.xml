@@ -43,7 +43,7 @@
         <maven.compiler.target>1.6</maven.compiler.target>
         <maven.compiler.source>1.6</maven.compiler.source>
         <!-- Remote Server URL -->
-        <remote.server.url>http://localhost:8080/</remote.server.url>
+        <remote.server.url>http://172.16.204.17:8080/</remote.server.url>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -117,7 +117,7 @@
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                     <archive>
                         <manifestEntries>
-                            <Dependencies>org.apache.cxf.impl</Dependencies>
+                            <Dependencies>org.apache.cxf.impl,com.amadeus</Dependencies>
                         </manifestEntries>
                     </archive>
                 </configuration>
@@ -127,6 +127,12 @@
                 <groupId>org.jboss.as.plugins</groupId>
                 <artifactId>jboss-as-maven-plugin</artifactId>
                 <version>${version.jboss.maven.plugin}</version>
+				<configuration>
+					<username>admin</username>
+					<password>Admin#1234</password>
+					<hostname>172.16.204.17</hostname>
+					<port>19999</port>
+				</configuration>                
             </plugin>
         </plugins>
     </build>
