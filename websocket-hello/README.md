@@ -2,16 +2,16 @@ jboss-websocket-hello: A simple WebSocket application
 ========================
 Author: Sande Gilda, Emmanuel Hugonett   
 Level: Beginner  
-Technologies: WebSocket  
-Summary: An simple example of a WebSocket application  
+Technologies: WebSocket, CDI, JSF  
+Summary: The `websocket-hello` quickstart demonstrates how to create a simple WebSocket application.  
 Target Product: EAP  
-Product Versions: EAP 6.3  
+Product Versions: EAP 6.4  
 Source: <https://github.com/jboss-developer/jboss-eap-quickstarts>  
 
 What is it?
 -----------
 
-This quickstart demonstrates how to create a simple WebSocket enabled application. It consists of the following:
+The `websocket-hello` quickstart demonstrates how to create a simple WebSocket-enabled application. It consists of the following:
 
 * A JavaScript enabled WebSocket HTML client.
 * A WebSocket server endpoint that uses annotations to interact with the WebSocket events.
@@ -48,7 +48,7 @@ Before you begin, you must enable the `NIO2` connector in the `web` subsystem of
 
         For Linux:  EAP_HOME/bin/standalone.sh
         For Windows:  EAP_HOME\bin\standalone.bat
-3. Review the `configure-http-connector.cli` file in the root of this quickstart directory. This script configures the http connector in the `web` subsystem to use the NIO2 protocol.
+3. Review the `configure-http-connector.cli` file in the root of this quickstart directory. This script configures the http connector in the `web` subsystem to use the "NIO2" protocol.
 
 4. Open a new command prompt, navigate to the root directory of this quickstart, and run the following command, replacing EAP_HOME with the path to your server:
 
@@ -58,6 +58,22 @@ You should see the following result when you run the script:
 
         The batch executed successfully.
         {"outcome" => "success"}
+5. Stop the JBoss EAP server.
+
+Review the Modified Server Configuration
+-----------------------------------
+
+After stopping the server, open the `EAP_HOME/standalone/configuration/standalone.xml` file and review the changes. 
+
+The  `http` connector in the `web` subsystem was modified to use the "org.apache.coyote.http11.Http11NioProtocol" protocol:
+
+        <subsystem xmlns="urn:jboss:domain:web:2.2" default-virtual-server="default-host" native="false">
+            <connector name="http" protocol="org.apache.coyote.http11.Http11NioProtocol" scheme="http" socket-binding="http"/>
+            <virtual-server name="default-host" enable-welcome-root="true">
+            <alias name="localhost"/>
+                <alias name="example.com"/>
+            </virtual-server>
+        </subsystem>
 
 
 Start the JBoss EAP Server
@@ -136,14 +152,17 @@ This script restores the http connector protocol in the web subsystem of the ser
 
 Run the Quickstart in JBoss Developer Studio or Eclipse
 -------------------------------------
-You can also start the server and deploy the quickstarts from Eclipse using JBoss tools. For more information, see [Use JBoss Developer Studio or Eclipse to Run the Quickstarts](https://github.com/jboss-developer/jboss-developer-shared-resources/blob/master/guides/USE_JDBS.md#use-jboss-developer-studio-or-eclipse-to-run-the-quickstarts) 
+You can also start the server and deploy the quickstarts or run the Arquillian tests from Eclipse using JBoss tools. For more information, see [Use JBoss Developer Studio or Eclipse to Run the Quickstarts](https://github.com/jboss-developer/jboss-developer-shared-resources/blob/master/guides/USE_JBDS.md#use-jboss-developer-studio-or-eclipse-to-run-the-quickstarts) 
+
+
+_NOTE:_ Be sure to enable the `NIO2` connector in the `web` subsystem by running the JBoss CLI commands as described in the section above entitled *Configure the JBoss EAP Server*. Stop the server at the end of that step.
 
 
 Debug the Application
 ------------------------------------
 
-If you want to debug the source code or look at the Javadocs of any library in the project, run either of the following commands to pull them into your local repository. The IDE should then detect them.
+If you want to debug the source code of any library in the project, run the following command to pull the source into your local repository. The IDE should then detect it.
 
         mvn dependency:sources
-        mvn dependency:resolve -Dclassifier=javadoc
+
   

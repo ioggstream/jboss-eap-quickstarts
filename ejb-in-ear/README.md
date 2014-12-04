@@ -1,28 +1,27 @@
-ejb-in-ear: Deployment of an EAR Containing a JSF WAR and an EJB JAR
+ejb-in-ear: Deployment of an EAR Containing a JSF WAR and EJB JAR
 ====================================================================
 Author: Paul Robinson  
 Level: Intermediate  
 Technologies: EJB, EAR  
-Summary: Packages an EJB JAR and WAR in an EAR  
+Summary: The `ejb-in-ear` quickstart demonstrates how to deploy an EAR archive that contains a *JSF 2.1* WAR and an *EJB 3.1* JAR.  
 Target Product: EAP  
-Product Versions: EAP 6.1, EAP 6.2, EAP 6.3  
+Product Versions: EAP 6.1, EAP 6.2, EAP 6.3, EAP 6.4  
 Source: <https://github.com/jboss-developer/jboss-eap-quickstarts/>  
 
 What is it?
 -----------
 
-This example demonstrates the deployment of an EAR artifact. The EAR contains: *JSF 2.0* WAR and an *EJB 3.1* JAR.
+The `ejb-in-ear` quickstart demonstrates the deployment of an EAR artifact to Red Hat JBoss Enterprise Application Platform. The EAR contains: *JSF 2.1* WAR and an *EJB 3.1* JAR.
 
-The example is composed of three maven projects, each with a shared parent. The projects are as follows:
+The example is composed of three Maven projects, each with a shared parent. The projects are as follows:
 
 1. `ejb`: This project contains the EJB code and can be built independently to produce the JAR archive.
 
 2. `web`: This project contains the JSF pages and the managed bean.
 
-3. `ear`: This project builds the EAR artifact and pulls in the ejb and web artifacts.
+3. `ear`: This project builds the EAR artifact and pulls in the EJB and Web artifacts.
 
 The root `pom.xml` builds each of the subprojects in the above order and deploys the EAR archive to the server.
-
 
 The example follows the common "Hello World" pattern. These are the steps that occur:
 
@@ -91,13 +90,13 @@ Undeploy the Archive
 
 Run the Quickstart in JBoss Developer Studio or Eclipse
 -------------------------------------
-You can also start the server and deploy the quickstarts from Eclipse using JBoss tools. For more information, see [Use JBoss Developer Studio or Eclipse to Run the Quickstarts](https://github.com/jboss-developer/jboss-developer-shared-resources/blob/master/guides/USE_JDBS.md#use-jboss-developer-studio-or-eclipse-to-run-the-quickstarts) 
+You can also start the server and deploy the quickstarts or run the Arquillian tests from Eclipse using JBoss tools. For more information, see [Use JBoss Developer Studio or Eclipse to Run the Quickstarts](https://github.com/jboss-developer/jboss-developer-shared-resources/blob/master/guides/USE_JBDS.md#use-jboss-developer-studio-or-eclipse-to-run-the-quickstarts) 
 
 
 Debug the Application
 ---------------------
 
-If you want to debug the source code or look at the Javadocs of any library in the project, run either of the following commands to pull them into your local repository. The IDE should then detect them.
+If you want to debug the source code of any library in the project, run the following command to pull the source into your local repository. The IDE should then detect it.
 
         mvn dependency:sources
-        mvn dependency:resolve -Dclassifier=javadoc
+

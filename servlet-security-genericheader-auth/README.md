@@ -1,17 +1,17 @@
-servlet-security-genericheader-auth:  Authenticate via external SSO system using HTTP request headers
+servlet-security-genericheader-auth:  Authenticate Via External SSO Using HTTP Request Headers
 ====================
 Author: Gary Lamperillo, Jesse Sightler  
 Level: Intermediate  
-Technologies: Servlet, JAAS  
-Summary: Demonstrates the use a custom authenticator to enable support for header-based authentication  
+Technologies: Servlet, Security, JAAS  
+Summary: The `servlet-security-genericheader-auth` quickstart demonstrates a custom authenticator to enable support for HTTP header-based authentication.  
 Target Product: EAP  
-Product Versions: EAP 6.1, EAP 6.2, EAP 6.3  
+Product Versions: EAP 6.1, EAP 6.2, EAP 6.3, EAP 6.4  
 Source: <https://github.com/jboss-developer/jboss-eap-quickstarts/>  
 
 What is it?
 -----------
 
-This example demonstrates a method for HTTP authentication based upon an HTTP header in the incoming request. A Tomcat
+The `servlet-security-genericheader-auth` quickstart demonstrates a method for HTTP authentication based upon an HTTP header in the incoming request. A Tomcat
 Valve called "GenericHeaderAuthenticator" is used to pass these credentials to JBoss. Tomcat Valves provide a 
 powerful, flexible way to insert a Java component into the request servlet container's request processing pipeline in 
 order to implement features such as this.
@@ -28,7 +28,7 @@ on the `SecuredServlet` sample.
 System requirements
 -------------------
 
-The application this project produces is designed to be run on JBoss Enterprise Application Platform 6.1 or later. 
+The application this project produces is designed to be run on Red Hat JBoss Enterprise Application Platform 6.1 or later. 
 
 All you need to build this project is Java 6.0 (Java SDK 1.6) or later and Maven 3.0 or later.
 
@@ -43,53 +43,37 @@ Configure the JBoss EAP Server
 
 This quickstart requires a custom security `GenericHeaderAuth` domain be enabled in order to trust the remote proxy server's username header.
 
-_NOTE - Before you begin:_
+You configure the security domain by running JBoss CLI commands. For your convenience, this quickstart batches the commands into a `configure-security-domain.cli` script provided in the root directory of this quickstart. 
 
-1. If it is running, stop the JBoss EAP server.
-2. Backup the file: `EAP_HOME/standalone/configuration/standalone.xml`
-3. After you have completed testing this quickstart, you can replace this file to restore the server to its original configuration.
+1. Before you begin, back up your server configuration file
+    * If it is running, stop the JBoss EAP server.
+    * Backup the file: `EAP_HOME/standalone/configuration/standalone.xml`
+    * After you have completed testing this quickstart, you can replace this file to restore the server to its original configuration.
 
-#### Configure the Security Domain by Running the JBoss CLI Script
-
-1. Start the JBoss EAP server by typing the following: 
+2. Start the JBoss EAP server by typing the following: 
 
         For Linux:  EAP_HOME/bin/standalone.sh
         For Windows:  EAP_HOME\bin\standalone.bat
+3. Review the `configure-security-domain.cli` file in the root of this quickstart directory. This script adds the `quickstart-domain` domain to the `security` subsystem in the server configuration and configures authentication access. Comments in the script describe the purpose of each block of commands.
 
-2. Open a new command prompt, navigate to the root directory of this quickstart, and run the following command, replacing EAP_HOME with the path to your server:
+
+4. Open a new command prompt, navigate to the root directory of this quickstart, and run the following command, replacing EAP_HOME with the path to your server:
 
         For Linux:   EAP_HOME/bin/jboss-cli.sh --connect --file=configure-security-domain.cli
         For Windows: EAP_HOME\bin\jboss-cli.bat --connect --file=configure-security-domain.cli
-This script adds the `GenericHeaderAuth` domain to the `security` subsystem in the server configuration and configures authentication access. You should see the following result when you run the script:
+   This script adds the `GenericHeaderAuth` domain to the `security` subsystem in the server configuration and configures authentication access. You should see the following result when you run the script:
 
         The batch executed successfully
         {"outcome" => "success"}
+5. Stop the JBoss EAP server.
 
-### Configure the Security Domain Using the JBoss CLI Interactively
 
-1. Start the JBoss EAP server by typing the following: 
+Review the Modified Server Configuration
+-----------------------------------
 
-        For Linux:  EAP_HOME/bin/standalone.sh
-        For Windows:  EAP_HOME\bin\standalone.bat
-2. To start the JBoss CLI tool, open a new command prompt, navigate to the EAP_HOME directory, and type the following:
-    
-        For Linux: bin/jboss-cli.sh --connect
-        For Windows: bin\jboss-cli.bat --connect
-3. At the prompt, enter the following series of commands:
+After stopping the server, open the `EAP_HOME/standalone/configuration/standalone.xml` file and review the changes.
 
-        [standalone@localhost:9999 /] /subsystem=security/security-domain=GenericHeaderAuth:add
-        [standalone@localhost:9999 /] /subsystem=security/security-domain=GenericHeaderAuth/authentication=classic:add(login-modules=[{"code" => "org.jboss.security.auth.spi.RemoteHostTrustLoginModule", "flag" => "required", "module-options" => [("trustedHosts" => "127.0.0.1"), ("roles" => "guest"),]}])
-    
-    Then reload the server with this command:
-
-        [standalone@localhost:9999 /] :reload
-
-### Configure the Security Domain by Manually Editing the Server Configuration File
-
-1.  If it is running, stop the JBoss EAP server.
-2.  Make sure you have backed up the `EAP_HOME/standalone/configuration/standalone.xml` file as noted in the beginning of this section.
-3.  Open the `EAP_HOME/standalone/configuration/standalone.xml` file in an editor and locate the subsystem `urn:jboss:domain:security`. 
-4.  Add the following XML just before the `</security-domains>` tag:
+The following `GenericHeaderAuth` security-domain was added to the `security` subsystem.
 
         <security-domain name="GenericHeaderAuth">
             <authentication>
@@ -144,7 +128,7 @@ Maven prints summary of the 1 performed test to the console.
 
 Run the Quickstart in JBoss Developer Studio or Eclipse
 -------------------------------------
-You can also start the server and deploy the quickstarts from Eclipse using JBoss tools. For more information, see [Use JBoss Developer Studio or Eclipse to Run the Quickstarts](https://github.com/jboss-developer/jboss-developer-shared-resources/blob/master/guides/USE_JDBS.md#use-jboss-developer-studio-or-eclipse-to-run-the-quickstarts) 
+You can also start the server and deploy the quickstarts or run the Arquillian tests from Eclipse using JBoss tools. For more information, see [Use JBoss Developer Studio or Eclipse to Run the Quickstarts](https://github.com/jboss-developer/jboss-developer-shared-resources/blob/master/guides/USE_JBDS.md#use-jboss-developer-studio-or-eclipse-to-run-the-quickstarts) 
 
 ### Run the Arquillian Tests in JBoss Developer Studio
 -----------------------
@@ -157,10 +141,10 @@ To run the tests, right click on the project or individual classes and select `R
 Debug the Application
 ------------------------------------
 
-If you want to debug the source code or look at the Javadocs of any library in the project, run either of the following commands to pull them into your local repository. The IDE should then detect them.
+If you want to debug the source code of any library in the project, run the following command to pull the source into your local repository. The IDE should then detect it.
 
       mvn dependency:sources
-      mvn dependency:resolve -Dclassifier=javadoc
+     
 
 
 Remove the Security Domain Configuration

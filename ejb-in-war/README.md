@@ -3,15 +3,15 @@ ejb-in-war: Deployment of a WAR Containing an EJB
 Author: Paul Robinson  
 Level: Intermediate  
 Technologies: EJB, JSF, WAR  
-Summary: Packages an EJB JAR in a WAR  
+Summary: The `ejb-in-war` quickstart demonstrates how to package an *EJB 3.1* bean in a WAR archive and deploy it to JBoss EAP. Arquillian tests are also provided.  
 Target Product: EAP  
-Product Versions: EAP 6.1, EAP 6.2, EAP 6.3  
+Product Versions: EAP 6.1, EAP 6.2, EAP 6.3, EAP 6.4  
 Source: <https://github.com/jboss-developer/jboss-eap-quickstarts/>  
 
 What is it?
 -----------
 
-This example demonstrates the deployment of an *EJB 3.1* bean bundled in a war archive for deployment to Red Hat JBoss Enterprise Application Platform. The project also includes a set of Aquillian tests for the managed bean and EJB.
+The `ejb-in-war` quickstart demonstrates the deployment of an *EJB 3.1* bean bundled in a WAR archive for deployment to Red Hat JBoss Enterprise Application Platform. The project also includes a set of Arquillian tests for the managed bean and EJB.
 
 The example follows the common "Hello World" pattern. These are the steps that occur:
 
@@ -111,13 +111,13 @@ Search for lines similar to the following ones in the server output log:
 
 Run the Quickstart in JBoss Developer Studio or Eclipse
 -------------------------------------
-You can also start the server and deploy the quickstarts from Eclipse using JBoss tools. For more information, see [Use JBoss Developer Studio or Eclipse to Run the Quickstarts](https://github.com/jboss-developer/jboss-developer-shared-resources/blob/master/guides/USE_JDBS.md#use-jboss-developer-studio-or-eclipse-to-run-the-quickstarts) 
+You can also start the server and deploy the quickstarts or run the Arquillian tests from Eclipse using JBoss tools. For more information, see [Use JBoss Developer Studio or Eclipse to Run the Quickstarts](https://github.com/jboss-developer/jboss-developer-shared-resources/blob/master/guides/USE_JBDS.md#use-jboss-developer-studio-or-eclipse-to-run-the-quickstarts) 
 
 
 Debug the Application
 ------------------------------------
 
-If you want to debug the source code or look at the Javadocs of any library in the project, run either of the following commands to pull them into your local repository. The IDE should then detect them.
+If you want to debug the source code of any library in the project, run the following command to pull the source into your local repository. The IDE should then detect it.
 
         mvn dependency:sources
-        mvn dependency:resolve -Dclassifier=javadoc
+

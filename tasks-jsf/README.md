@@ -3,26 +3,25 @@ tasks-jsf: JSF, JPA quickstart
 Author: Lukas Fryc  
 Level: Intermediate  
 Technologies: JSF, JPA  
-Summary: Provides a JSF 2.0 as view layer for the `tasks` quickstart  
+Summary: The `tasks-jsf` quickstart demonstrates how to use JPA 2.0 persistence with JSF 2.1 as the view layer.  
 Prerequisites: tasks  
 Target Product: EAP  
-Product Versions: EAP 6.1, EAP 6.2, EAP 6.3  
+Product Versions: EAP 6.1, EAP 6.2, EAP 6.3, EAP 6.4  
 Source: <https://github.com/jboss-developer/jboss-eap-quickstarts/>  
 
 What is it?
 -----------
 
-This project demonstrates how to use JPA 2.0 persistence with JSF 2.0 as view layer.
+The `tasks-jsf` quickstart demonstrates how to use JPA 2.0 persistence with JSF 2.1 as view layer. It provides a JSF front end for the [tasks](../tasks/README.md) quickstart.
 
-The theme of this application is simple Task management with simple log in. The project contains two entities - a user and a task.
+The theme of this application is simple Task management with simple login. The project contains two entities - a `user` and a `task`.
 
-This sample includes a persistence unit and some sample persistence code to introduce you to database access in enterprise Java.
+This sample includes a persistence unit and some sample persistence code to introduce you to database access in enterprise Java. Persistence code is covered by tests to help you write business logic without the need to use any view layer.
 
-Persistence code is covered by tests to help you write business logic without the need to use any view layer.
+JSF 2.1 is used to present the user two views.
 
-JSF 2.0 is used to present user two views - authentication form and task view.
-
-The task view is contains a task list, a task detail and a task addition form. The task view uses AJAX.
+* authentication form: This provides the simple login
+* task view: This view contains the task list, a task detail, and a task addition form. The task view uses AJAX.
 
 System requirements
 -------------------
@@ -106,13 +105,13 @@ _NOTE: The following commands assume you have configured your Maven user setting
 
 Run the Quickstart in JBoss Developer Studio or Eclipse
 -------------------------------------
-You can also start the server and deploy the quickstarts from Eclipse using JBoss tools. For more information, see [Use JBoss Developer Studio or Eclipse to Run the Quickstarts](https://github.com/jboss-developer/jboss-developer-shared-resources/blob/master/guides/USE_JDBS.md#use-jboss-developer-studio-or-eclipse-to-run-the-quickstarts) 
+You can also start the server and deploy the quickstarts or run the Arquillian tests from Eclipse using JBoss tools. For more information, see [Use JBoss Developer Studio or Eclipse to Run the Quickstarts](https://github.com/jboss-developer/jboss-developer-shared-resources/blob/master/guides/USE_JBDS.md#use-jboss-developer-studio-or-eclipse-to-run-the-quickstarts) 
 
 
 Debug the Application
 ---------------------
 
-If you want to debug the source code or look at the Javadocs of any library in the project, run either of the following commands to pull them into your local repository. The IDE should then detect them.
+If you want to debug the source code of any library in the project, run the following command to pull the source into your local repository. The IDE should then detect it.
 
         mvn dependency:sources
-        mvn dependency:resolve -Dclassifier=javadoc
+

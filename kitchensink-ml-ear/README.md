@@ -1,21 +1,21 @@
-kitchensink-ml-ear: Localized Example Using Multiple Java EE 6 Technologies Deployed as an EAR
+kitchensink-ml-ear: Localized Version of the kitchensink-ear Quickstart
 ==============================================================================================
 Author: Sande Gilda  
 Level: Intermediate  
-Technologies: EAR  
-Summary: A localized version of kitchensink-ear  
+Technologies: CDI, JSF, JPA, EJB, JAX-RS, BV, EAR, i18n, l10n  
+Summary: The `kitchensink-ml-ear` quickstart demonstrates a localized database application, using JSF, CDI, EJB, JPA and Bean Validation, packaged as an EAR.  
 Target Product: EAP  
-Product Versions: EAP 6.1, EAP 6.2, EAP 6.3  
+Product Versions: EAP 6.1, EAP 6.2, EAP 6.3, EAP 6.4  
 Source: <https://github.com/jboss-developer/jboss-eap-quickstarts/>  
 
 What is it?
 -----------
 
-This is your project! It is a sample, deployable Maven 3 project to help you get your foot in the door developing with Java EE 6 on Red Hat JBoss Enterprise Application Platform. 
+he `kitchensink-ml-ear` quickstart is a deployable Maven 3 project to help you get your foot in the door developing with Java EE 6 on Red Hat JBoss Enterprise Application Platform. 
 
-This project is setup to allow you to create a _localized_ Java EE 6 compliant application using JSF 2.0, CDI 1.0, EJB 3.1, JPA 2.0 and Bean Validation 1.0. A localized application is one that supports multiple languages. That is what the _-ml_ suffix denotes in the quickstart name `kitchensink-ml-ear`. This quickstart also includes a persistence unit and some sample persistence and transaction code to introduce you to database access in enterprise Java. 
+It demonstrates how to create a _localized_ Java EE 6 compliant application using JSF 2.1, CDI 1.0, JAX-RS, EJB 3.1, JPA 2.0 and Bean Validation 1.0. A localized application is one that supports multiple languages. That is what the _-ml_ suffix denotes in the quickstart name _kitchensink-ml-ear_. This quickstart also includes a persistence unit and some sample persistence and transaction code to introduce you to database access in enterprise Java. 
 
-This quickstart uses the `kitchensink-ear` quickstart as its starting point. It has been enhanced to provide localization of labels and messages. A user sets the preferred language choice in the browser and, if the application supports that language, the application web page is rendered in that language. For demonstration purposes, this quickstart has been tranlated into French(fr) and Spanish (es) using <http://translate.google.com>, so the translations may not be ideal.
+This quickstart uses the [kitchensink-ear](../kitchensink-ear/README.md) quickstart as its starting point. It has been enhanced to provide localization of labels and messages. A user sets the preferred language choice in the browser and, if the application supports that language, the application web page is rendered in that language. For demonstration purposes, this quickstart has been tranlated into French(fr) and Spanish (es) using <http://translate.google.com>, so the translations may not be ideal.
 
 _Note: This quickstart uses the H2 database included with JBoss EAP 6. It is a lightweight, relational example datasource that is used for examples only. It is not robust or scalable and should NOT be used in a production environment!_
 
@@ -37,17 +37,17 @@ The following changes were made to the quickstart to enable it to use the browse
 
         <application>
           <locale-config>
-                <default-locale>en</default-locale>
-                <supported-locale>en-US</supported-locale>
-                <supported-locale>es</supported-locale>
-                <supported-locale>ES-FR</supported-locale>
-                <supported-locale>fr</supported-locale>
-                <supported-locale>fr-FR</supported-locale>
-            </locale-config>
-            <resource-bundle>
-                <base-name>org/jboss/as/quickstarts/kitchensink_ear/bundle/Resources</base-name>
-                <var>bundle</var>
-            </resource-bundle>
+            <default-locale>en</default-locale>
+            <supported-locale>en-US</supported-locale>
+            <supported-locale>fr</supported-locale>
+            <supported-locale>fr-FR</supported-locale>
+            <supported-locale>es</supported-locale>
+            <supported-locale>es-ES</supported-locale>
+          </locale-config>
+          <resource-bundle>
+            <base-name>org/jboss/as/quickstarts/kitchensink_ear/bundle/Resources</base-name>
+            <var>bundle</var>
+          </resource-bundle>
         </application>
         
 * The `jboss-kitchensink-ml-ear-ejb/src/main/java/org/jboss/as/quickstarts/kitchensink/model/Member.java` file was modififed to add the message key to @Pattern annotation.
@@ -206,13 +206,13 @@ You should see messages similar to the following:
 
 Run the Quickstart in JBoss Developer Studio or Eclipse
 -------------------------------------
-You can also start the server and deploy the quickstarts from Eclipse using JBoss tools. For more information, see [Use JBoss Developer Studio or Eclipse to Run the Quickstarts](https://github.com/jboss-developer/jboss-developer-shared-resources/blob/master/guides/USE_JDBS.md#use-jboss-developer-studio-or-eclipse-to-run-the-quickstarts) 
+You can also start the server and deploy the quickstarts or run the Arquillian tests from Eclipse using JBoss tools. For more information, see [Use JBoss Developer Studio or Eclipse to Run the Quickstarts](https://github.com/jboss-developer/jboss-developer-shared-resources/blob/master/guides/USE_JBDS.md#use-jboss-developer-studio-or-eclipse-to-run-the-quickstarts) 
 
 
 Debug the Application
 ---------------------
 
-If you want to debug the source code or look at the Javadocs of any library in the project, run either of the following commands to pull them into your local repository. The IDE should then detect them.
+If you want to debug the source code of any library in the project, run the following command to pull the source into your local repository. The IDE should then detect it.
 
         mvn dependency:sources
-        mvn dependency:resolve -Dclassifier=javadoc
+

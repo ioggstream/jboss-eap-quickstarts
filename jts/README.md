@@ -1,19 +1,19 @@
-jts: Java Transaction Service - Distributed EJB Transactions Across Multiple Containers 
-======================================================================================
+jts: Java Transaction Service - Distributed EJB Transactions
+============================================================
 Author: Tom Jenkinson  
 Level: Intermediate  
 Technologies: JTS  
-Summary: Uses Java Transaction Service (JTS) to coordinate distributed transactions  
+Summary: The `jts` quickstart shows how to use JTS to perform distributed transactions across multiple containers, fulfilling the properties of an ACID transaction.  
 Prerequisites: cmt  
 Target Product: EAP  
-Product Versions: EAP 6.1, EAP 6.2, EAP 6.3  
+Product Versions: EAP 6.1, EAP 6.2, EAP 6.3, EAP 6.4  
 Source: <https://github.com/jboss-developer/jboss-eap-quickstarts/>  
 
 
 What is it?
 -----------
 
-This example demonstrates how to perform distributed transactions in an application. A distributed transaction is a set of operations performed by two or more nodes, participating in an activity coordinated as a single entity of work, and fulfilling the properties of an ACID transaction. 
+The `jts` quickstart demonstrates how to perform distributed transactions across multiple containers in an application. A distributed transaction is a set of operations performed by two or more nodes, participating in an activity coordinated as a single entity of work, and fulfilling the properties of an ACID transaction. 
 
 ACID is a set of 4 properties that guarantee the resources are processed in the following manner:
 
@@ -25,7 +25,7 @@ ACID is a set of 4 properties that guarantee the resources are processed in the 
 
 The example uses Java Transaction Service (JTS) to propagate a transaction context across two Container-Managed Transaction (CMT) EJBs that, although deployed in separate servers, participate in the same transaction. In this example, one server processes the Customer and Account data and the other server processes the Invoice data.
 
-The code base is essentially the same as the _cmt_ quickstart, however in this case the <code>InvoiceManager</code>
+The code base is essentially the same as the [cmt](../cmt/README.md) quickstart, however in this case the <code>InvoiceManager</code>
 has been separated to a different deployment archive to demonstrate the usage of JTS. You can see the changes in the 
 following ways:
 
@@ -38,9 +38,7 @@ You will see that the `CustomerManagerEJB` uses the EJB home for the remote EJB,
 
 A simple MDB has been provided that prints out the messages sent but this is not a transactional MDB and is purely provided for debugging purposes.
 
-After users complete this quickstart, they are invited to run through the following quickstart:
-
-1. _jts-distributed-crash-rec_ - The crash recovery quickstart builds upon the _jts_ quickstart by demonstrating the fault tolerance of JBossAS.
+After  you complete this quickstart, you are invited to run through the [jts-distributed-crash-rec](../jts-distributed-crash-rec/README.md) quickstart. The crash recovery quickstart builds upon this quickstart by demonstrating the fault tolerance of Red Hat JBoss Enterprise Application Platform.
 
 
 System requirements
@@ -101,7 +99,7 @@ You configure the security domain by running JBoss CLI commands. For your conven
 
         For Linux:  EAP_HOME/bin/standalone.sh -c standalone-full.xml -Djboss.tx.node.id=UNIQUE_NODE_ID_1
         For Windows:  EAP_HOME\bin\standalone.bat -c standalone-full.xml  -Djboss.tx.node.id=UNIQUE_NODE_ID_1
-3. Review the `configure--jts-transactions.cli` file in the root of this quickstart directory. This script configures the server to use jts transaction processing.
+3. Review the `configure-jts-transactions.cli` file in the root of this quickstart directory. This script configures the server to use jts transaction processing.
 4. Open a new command prompt, navigate to the root directory of this quickstart, and run the following command, replacing EAP_HOME with the path to your server:
 
         For Linux: EAP_HOME/bin/jboss-cli.sh --connect --file=configure-jts-transactions.cli
@@ -117,20 +115,20 @@ _NOTE:_ When you have completed testing this quickstart, it is important to [Rem
 
 ### Review the Modified Server Configuration
 
-If you want to review and understand newly added XML configuration, stop the JBoss EAP server and open the  `EAP_HOME/standalone/configuration/standalone-full.xml` file. 
+After stopping the server, open the `EAP_HOME/standalone/configuration/standalone-full.xml` file and review the changes.
 
 1. The orb initializers `transactions` attribute is changed from "spec" to "on" in the  `jacorb` subsystem to enable JTS. A naming root is also added to the subsystem.
 
-        <subsystem xmlns="urn:jboss:domain:jacorb:1.3">
-            <orb name="$" socket-binding="jacorb" ssl-socket-binding="jacorb-ssl">
+        <subsystem xmlns="urn:jboss:domain:jacorb:1.4">
+            <orb name="${jboss.node.name}" socket-binding="jacorb" ssl-socket-binding="jacorb-ssl">
                 <initializers security="identity" transactions="on"/>
             </orb>
-            <naming root-context="$/Naming/root"/>
+            <naming root-context="${jboss.node.name}/Naming/root"/>
         </subsystem>
 
 2. An empty `<jts/>` element is added to the the end of the `transactions` subsystem to enable JTS.
 
-        <subsystem xmlns="urn:jboss:domain:transactions:1.4">
+        <subsystem xmlns="urn:jboss:domain:transactions:1.5">
             <core-environment node-identifier="${jboss.tx.node.id}">
                 <process-id>
                     <uuid/>
@@ -193,15 +191,13 @@ The application will be running at the following URL: <http://localhost:8080/jbo
 
 When you enter a name and click to "Add" that customer, you will see the following in the application server 1 console:
     
-    14:31:48,334 WARNING [javax.enterprise.resource.webcontainer.jsf.renderkit] (http-localhost-127.0.0.1-8080-1) Unable to find component with ID name in view.
-    14:31:50,457 ERROR [jacorb.orb] (http-localhost-127.0.0.1-8080-1) no adapter activator exists for jts-quickstart&%InvoiceManagerEJBImpl&%home
-    14:31:50,767 INFO  [org.jboss.ejb.client] (http-localhost-127.0.0.1-8080-1) JBoss EJB Client version 1.0.25.Final-redhat-1
-    14:31:51,430 WARN  [com.arjuna.ats.jts] (RequestProcessor-5) ARJUNA022261: ServerTopLevelAction detected that the transaction was inactive
+    INFO  [org.jboss.ejb.client] (http-/127.0.0.1:8080-1) JBoss EJB Client version 1.0.26.Final-redhat-1
+    WARN  [com.arjuna.ats.jts] (RequestProcessor-5) ARJUNA022261: ServerTopLevelAction detected that the transaction was inactive
 
 You will also see the following in application-server-2 console:
 
-    14:31:50,750 INFO  [org.jboss.ejb.client] (RequestProcessor-10) JBoss EJB Client version 1.0.25.Final-redhat-1
-    14:31:51,395 INFO  [class org.jboss.as.quickstarts.cmt.jts.mdb.HelloWorldMDB] (Thread-1 (HornetQ-client-global-threads-1567863645)) Received Message: Created invoice for customer named: Tom
+    INFO  [org.jboss.ejb.client] (RequestProcessor-10) JBoss EJB Client version 1.0.26.Final-redhat-1
+    INFO  [class org.jboss.as.quickstarts.cmt.jts.mdb.HelloWorldMDB] (Thread-2 (HornetQ-client-global-threads-2003471369)) Received Message: Created invoice for customer named: Tom
 
 The web page will also change and show you the new list of customers.
 
@@ -233,7 +229,7 @@ You can modify the server configuration by running the `remove-jts-transactions.
 
         For Linux: EAP_HOME_1/bin/jboss-cli.sh --connect --file=remove-jts-transactions.cli 
         For Windows: EAP_HOME_1\bin\jboss-cli.bat --connect --file=remove-jts-transactions.cli 
-This script removes the `test` queue from the `messaging` subsystem in the server configuration. You should see the following result when you run the script:
+This script removes the JTS configuration from the `jacorb` and `transactions` subsystems in the server configuration. You should see the following result when you run the script:
 
         The batch executed successfully.
         {"outcome" => "success"}
@@ -265,14 +261,14 @@ This script removes the `test` queue from the `messaging` subsystem in the serve
 
     * Find the orb subsystem and change the configuration back to:
 
-            <subsystem xmlns="urn:jboss:domain:jacorb:1.2">
+            <subsystem xmlns="urn:jboss:domain:jacorb:1.4">
                 <orb>
                     <initializers security="on" transactions="spec"/>
                 </orb>
             </subsystem>
     * Find the transaction subsystem and remove the `<jts/>` element:
 
-            <subsystem xmlns="urn:jboss:domain:transactions:1.2">
+            <subsystem xmlns="urn:jboss:domain:transactions:1.5">
                 <!-- REMOVE node-identifier ATTRIBUTE FROM core-environment ELEMENT -->
                 <!-- LEAVE EXISTING CONFIG AND REMOVE THE </jts> -->
             </subsystem>

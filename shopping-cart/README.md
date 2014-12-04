@@ -2,18 +2,18 @@ shopping-cart: EJB 3.1 Stateful Session Bean (SFSB) Example
 =====================================
 Author: Serge Pagop  
 Level: Intermediate  
-Technologies: EJB  
-Summary: Demonstrates a stateful session bean  
+Technologies: SFSB EJB  
+Summary: The `shopping-cart` quickstart demonstrates how to deploy and run a simple Java EE 6 shopping cart application that uses a stateful session bean (SFSB).   
 Target Product: EAP  
-Product Versions: EAP 6.1, EAP 6.2, EAP 6.3  
+Product Versions: EAP 6.1, EAP 6.2, EAP 6.3, EAP 6.4  
 Source: <https://github.com/jboss-developer/jboss-eap-quickstarts/>  
 
 What is it?
 -----------
 
-In this example, you will learn how to deploy and run a simple Java EE 6 application named `shopping-cart` that uses a stateful session bean. The shopping-cart allows customers to buy, checkout and view their cart contents. 
+The `shopping-cart` quickstart demonstrates how to deploy and run a simple Java EE 6 application that uses a stateful session bean (SFSB). The application allows customers to buy, checkout, and view their cart contents. 
 
-The shopping-cart application consists of the following:
+The `shopping-cart` application consists of the following:
 
 1. A server side component:
 
@@ -56,13 +56,17 @@ Build and Deploy the Quickstart
 3. To build both the server component and the remote client program, deploy the server module, change into the examples shopping-cart directory and type the following:
 
         mvn clean install jboss-as:deploy 
-4. This maven goal will deploy `server/target/jboss-shopping-cart-server.jar`. You can check the Application Server console to see information messages regarding the deployment.
+4. This Maven goal will deploy `server/target/jboss-shopping-cart-server.jar`. You can check the Application Server console to see information messages regarding the deployment.
 
 
 Run the Client Application
 ------------------------
 
-Now start a client that will access the beans you just deployed:
+Now start a client that will access the beans you just deployed. 
+
+You can use the command prompt from the previous step or open a new one and navigate to the root of the `shopping-cart` quickstart directory.
+
+Type the following command:
 
         mvn exec:java -f client/pom.xml 
 
@@ -71,7 +75,7 @@ Investigate the Console Output
 
 You should see the following: 
 
-1. The client sends a remote method invocation to the stateful session bean to buy two "JBoss Enterprise Application Platform 6" subscriptions and one "JBoss SOA Platform 6" subscription.
+1. The client sends a remote method invocation to the stateful session bean to buy two "Red Hat JBoss Enterprise Application Platform 6" subscriptions and one "JBoss SOA Platform 6" subscription.
 2. The client sends a remote method invocation to get the contents of the cart and prints it to the console.
 3. The client sends a remote method invocation to invoke checkout. Note the `checkout()` method in the server `ShoppingCartBean` has the `@Remove` annotation. This means the container will destroy shopping cart after the call and it will no longer be available. 
 4. The client calls `getCartContents()` to make sure the shopping cart was removed after checkout. This results in a `javax.ejb.NoSuchEJBException` trace in the server, proving the cart was removed.
@@ -80,13 +84,13 @@ On the client console, you should see output similar to:
 
     &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
     Obtained the remote interface to the shopping cart
-    Buying a "JBoss Enterprise Application Platform 6"
-    Buying another "JBoss Enterprise Application Platform 6"
+    Buying a "Red Hat JBoss Enterprise Application Platform 6"
+    Buying another "Red Hat JBoss Enterprise Application Platform 6"
     Buying a "JBoss SOA Platform 6"
     
     Print cart:
     1     JBoss SOA Platform 6
-    2     JBoss Enterprise Application Platform 6
+    2     Red Hat JBoss Enterprise Application Platform 6
     
     Checkout
     Cart was correctly removed, as expected, after Checkout
@@ -124,13 +128,13 @@ Undeploy the Archive
 
 Run the Quickstart in JBoss Developer Studio or Eclipse
 -------------------------------------
-You can also start the server and deploy the quickstarts from Eclipse using JBoss tools. For more information, see [Use JBoss Developer Studio or Eclipse to Run the Quickstarts](https://github.com/jboss-developer/jboss-developer-shared-resources/blob/master/guides/USE_JDBS.md#use-jboss-developer-studio-or-eclipse-to-run-the-quickstarts) 
+You can also start the server and deploy the quickstarts or run the Arquillian tests from Eclipse using JBoss tools. For more information, see [Use JBoss Developer Studio or Eclipse to Run the Quickstarts](https://github.com/jboss-developer/jboss-developer-shared-resources/blob/master/guides/USE_JBDS.md#use-jboss-developer-studio-or-eclipse-to-run-the-quickstarts) 
 
 
 Debug the Application
 ---------------------
 
-If you want to debug the source code or look at the Javadocs of any library in the project, run either of the following commands to pull them into your local repository. The IDE should then detect them.
+If you want to debug the source code of any library in the project, run the following command to pull the source into your local repository. The IDE should then detect it.
 
         mvn dependency:sources
-        mvn dependency:resolve -Dclassifier=javadoc
+

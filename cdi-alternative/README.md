@@ -1,19 +1,17 @@
-cdi-alternative: Demostrates CDI Alternatives
+cdi-alternative: Demonstrates CDI Alternatives
 ======================================================
 Author: Nevin Zhu  
 Level: Intermediate  
 Technologies: CDI, Servlet, JSP  
-Summary: Demonstrates the use of CDI Alternatives where the bean is selected during deployment   
+Summary: The `cdi-alternative` quickstart demonstrates how to create a bean that can be implemented for different purposes without changing the source code.   
 Target Product: EAP  
-Product Versions: EAP 6.1, EAP 6.2, EAP 6.3  
+Product Versions: EAP 6.1, EAP 6.2, EAP 6.3, EAP 6.4  
 Source: <https://github.com/jboss-developer/jboss-eap-quickstarts/>  
 
 What is it?
 -----------
 
-When more than one version of a bean is implemented for different purposes, the ability to switch between the versions during the development phase by injecting one qualifier or another is shown in this demo.
-
-Instead of having to change the source code of the application, one can make the choice at deployment time by using alternatives.
+The `cdi-alternative` quickstart demonstrates how to create a bean that can be implemented for different purposes without changing the source code. Instead, you choose the bean implementation during development by injecting a qualifier. Then at deployment time, rather than modify the source code, you choose the alternative.
 
 Alternatives are commonly used for purposes like the following:
 
@@ -88,13 +86,13 @@ Undeploy the Archive
 
 Run the Quickstart in JBoss Developer Studio or Eclipse
 -------------------------------------
-You can also start the server and deploy the quickstarts from Eclipse using JBoss tools. For more information, see [Use JBoss Developer Studio or Eclipse to Run the Quickstarts](https://github.com/jboss-developer/jboss-developer-shared-resources/blob/master/guides/USE_JDBS.md#use-jboss-developer-studio-or-eclipse-to-run-the-quickstarts) 
+You can also start the server and deploy the quickstarts or run the Arquillian tests from Eclipse using JBoss tools. For more information, see [Use JBoss Developer Studio or Eclipse to Run the Quickstarts](https://github.com/jboss-developer/jboss-developer-shared-resources/blob/master/guides/USE_JBDS.md#use-jboss-developer-studio-or-eclipse-to-run-the-quickstarts) 
 
 Debug the Application
 ------------------------------------
 
-If you want to debug the source code or look at the Javadocs of any library in the project, run either of the following commands to pull them into your local repository. The IDE should then detect them.
+If you want to debug the source code of any library in the project, run the following command to pull the source into your local repository. The IDE should then detect it.
 
     mvn dependency:sources
-    mvn dependency:resolve -Dclassifier=javadoc
+   
 

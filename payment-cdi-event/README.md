@@ -2,16 +2,16 @@ payment-cdi-event: Use CDI Events to Process Debit and Credit Operations
 ========================================================================
 Author: Elvadas Nono  
 Level: Beginner  
-Technologies: CDI  
-Summary: Demonstrates how to use CDI 1.0 Events  
+Technologies: CDI, JSF  
+Summary: The `payment-cdi-event` quickstart demonstrates how to create credit and debit *CDI 1.0 Events* in JBoss EAP, using a JSF front-end client.  
 Target Product: EAP  
-Product Versions: EAP 6.1, EAP 6.2, EAP 6.3  
+Product Versions: EAP 6.1, EAP 6.2, EAP 6.3, EAP 6.4  
 Source: <https://github.com/jboss-developer/jboss-eap-quickstarts/>  
 
 What is it?
 -----------
 
-This quickstart demonstrates how to use *CDI 1.0 Events* in  Red Hat JBoss Enterprise Application Platform.
+The `payment-cdi-event` quickstart demonstrates how to use *CDI 1.0 Events* in Red Hat JBoss Enterprise Application Platform.
 
 The JSF front-end client allows you to create both credit and debit operation events.
 
@@ -95,13 +95,13 @@ Undeploy the Archive
 
 Run the Quickstart in JBoss Developer Studio or Eclipse
 -------------------------------------
-You can also start the server and deploy the quickstarts from Eclipse using JBoss tools. For more information, see [Use JBoss Developer Studio or Eclipse to Run the Quickstarts](https://github.com/jboss-developer/jboss-developer-shared-resources/blob/master/guides/USE_JDBS.md#use-jboss-developer-studio-or-eclipse-to-run-the-quickstarts) 
+You can also start the server and deploy the quickstarts or run the Arquillian tests from Eclipse using JBoss tools. For more information, see [Use JBoss Developer Studio or Eclipse to Run the Quickstarts](https://github.com/jboss-developer/jboss-developer-shared-resources/blob/master/guides/USE_JBDS.md#use-jboss-developer-studio-or-eclipse-to-run-the-quickstarts) 
 
 
 Debug the Application
 ------------------------------------
 
-If you want to debug the source code or look at the Javadocs of any library in the project, run either of the following commands to pull them into your local repository. The IDE should then detect them.
+If you want to debug the source code of any library in the project, run the following command to pull the source into your local repository. The IDE should then detect it.
 
         mvn dependency:sources
-        mvn dependency:resolve -Dclassifier=javadoc
+

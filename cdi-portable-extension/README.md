@@ -1,19 +1,19 @@
-cdi-portable-extension: An example of a Portable Extension and some of the APIs / SPIs of CDI
+cdi-portable-extension: CDI Portable Extension 
 ======================================================
 Author: Jason Porter  
 Level: Intermediate  
 Technologies: CDI  
-Summary: Creating a basic CDI extension to provide injection of fields from an XML file.  
+Summary: The `cdi-portable-extension` quickstart demonstrates a simple CDI Portable Extension that uses SPI classes to inject beans with data from an XML file.  
 Target Product: EAP  
-Product Versions: EAP 6.1, EAP 6.2, EAP 6.3  
+Product Versions: EAP 6.1, EAP 6.2, EAP 6.3, EAP 6.4  
 Source: <https://github.com/jboss-developer/jboss-eap-quickstarts/>  
 
 What is it?
 -----------
 
-This project demonstrates a simple CDI Portable Extension and some of the SPI classes used
+The `cdi-portable-extension` quickstart demonstrates a simple CDI Portable Extension and some of the SPI classes used
 to complete that task. This particular extension explores the ProcessInjectionTarget and 
-InjectionTarget spi classes of CDI. To demonstrate a possible way to seed data into beans.
+InjectionTarget SPI classes of CDI, to demonstrate a possible way to seed data into beans.
 
 A Portable Extension is essentially an extension to Java EE 6+ which is tailored to a specific
 use case which will run on any Java EE 6 or later implementation. There may be something that the
@@ -36,8 +36,6 @@ All you need to build this project is Java 6.0 (Java SDK 1.6) or later, Maven 3.
 
 Configure Maven
 ---------------
-
-Contributor: You can copy or link to the Maven configuration information in the README file in the root folder of the quickstarts. For example:
 
 If you have not yet done so, you must [Configure Maven](https://github.com/jboss-developer/jboss-developer-shared-resources/blob/master/guides/CONFIGURE_MAVEN.md#configure-maven-to-build-and-deploy-the-quickstarts) before testing the quickstarts.
 
@@ -63,15 +61,6 @@ _NOTE: The following commands assume you have configured your Maven user setting
 3. Type the following command to run the test goal with the following profile activated:
 
         mvn clean test -Parq-jbossas-remote
-
-
-Run tests from JBDS
------------------------
-
-To be able to run the tests from JBDS, first set the active Maven profile in project properties to be either 'arq-jbossas-managed' for running on
-managed server or 'arq-jbossas-remote' for running on remote server.
-
-To run the tests, right click on the project or individual classes and select Run As --> JUnit Test in the context menu.
 
 
 Investigate the Console Output
@@ -116,13 +105,13 @@ The two statements to look for are these:
 
 Run the Quickstart in JBoss Developer Studio or Eclipse
 -------------------------------------
-You can also start the server and deploy the quickstarts from Eclipse using JBoss tools. For more information, see [Use JBoss Developer Studio or Eclipse to Run the Quickstarts](https://github.com/jboss-developer/jboss-developer-shared-resources/blob/master/guides/USE_JDBS.md#use-jboss-developer-studio-or-eclipse-to-run-the-quickstarts)
+You can also start the server and deploy the quickstarts or run the Arquillian tests from Eclipse using JBoss tools. For more information, see [Use JBoss Developer Studio or Eclipse to Run the Quickstarts](https://github.com/jboss-developer/jboss-developer-shared-resources/blob/master/guides/USE_JBDS.md#use-jboss-developer-studio-or-eclipse-to-run-the-quickstarts)
 
 
 Debug the Application
 ------------------------------------
 
-If you want to debug the source code or look at the Javadocs of any library in the project, run either of the following commands to pull them into your local repository. The IDE should then detect them.
+If you want to debug the source code of any library in the project, run the following command to pull the source into your local repository. The IDE should then detect it.
 
         mvn dependency:sources
-        mvn dependency:resolve -Dclassifier=javadoc
+

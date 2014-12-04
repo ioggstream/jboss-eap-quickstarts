@@ -1,12 +1,12 @@
-QUICKSTART_NAME: Brief Description of the Quickstart
+QUICKSTART_NAME: Brief Description of the Quickstart (try to limit the description to 55 characters)
 ======================================================
 Author: YOUR_NAME and optional CONTACT_INFO  
 Level: [one of the following: Beginner, Intermediate, or Advanced]  
 Technologies: (list technologies used here)  
-Summary: (a brief description of the quickstart to appear in the table )  
+Summary: (A brief description of the quickstart to appear in the table and in Google search SEO results. Try to limit the description to 155 characters )  
 Prerequisites: (list any quickstarts that must be deployed prior to running this one)  
 Target Product: (EAP, WFK, JDG, etc)  
-Product Versions: (EAP 6.1, EAP 6.2, etc)  
+Product Versions: (EAP 6.1, EAP 6.2, EAP 6.3, EAP 6.4)  
 Source: (The URL for the repository that is the source of record for this quickstart)  
 
 
@@ -22,6 +22,7 @@ What is it?
 
 <!-- Contributor: This is where you provide an overview of what the quickstart demonstrates. For example: -->
 
+The `QUICKSTART_NAME` quickstart demonstrates ...
  * What are the technologies demonstrated by the quickstart?
  * What does it do when you run it?
 
@@ -42,8 +43,6 @@ All you need to build this project is Java 6.0 (Java SDK 1.6) or later, Maven 3.
  
 Configure Maven
 ---------------
-
-<!-- Contributor: You can copy or link to the Maven configuration information in the README file in the root folder of the quickstarts. For example: -->
 
 If you have not yet done so, you must [Configure Maven](https://github.com/jboss-developer/jboss-developer-shared-resources/blob/master/guides/CONFIGURE_MAVEN.md#configure-maven-to-build-and-deploy-the-quickstarts) before testing the quickstarts.
 
@@ -97,10 +96,10 @@ _NOTE: The following build command assumes you have configured your Maven user s
 <!-- Contributor: Be sure to replace the `QUICKSTART_NAME`. If this quickstart requires different or additional instructions, be sure to modify or add those instructions here. -->
 
 
-Access the application (For quickstarts that have a UI component)
+Access the application
 ---------------------
 
-<!-- Contributor: Provide the URL to access the running application. Be sure to make the URL a hyperlink as below, substituting the your quickstart name for the `QUICKSTART_NAME`. -->
+<!-- Contributor: Add this section only if the quickstart has a UI component and provide the URL to access the running application. Be sure to make the URL a hyperlink as below, substituting the your quickstart name for the `QUICKSTART_NAME`. -->
 
         Access the running application in a browser at the following URL:  <http://localhost:8080/jboss-QUICKSTART_NAME>
 
@@ -159,17 +158,17 @@ Run the Quickstart in JBoss Developer Studio or Eclipse
 
 <!-- Contributor: For example: -->
 
-You can also start the server and deploy the quickstarts from Eclipse using JBoss tools. For more information, see [Use JBoss Developer Studio or Eclipse to Run the Quickstarts](https://github.com/jboss-developer/jboss-developer-shared-resources/blob/master/guides/USE_JDBS.md#use-jboss-developer-studio-or-eclipse-to-run-the-quickstarts) 
+You can also start the server and deploy the quickstarts or run the Arquillian tests from Eclipse using JBoss tools. For more information, see [Use JBoss Developer Studio or Eclipse to Run the Quickstarts](https://github.com/jboss-developer/jboss-developer-shared-resources/blob/master/guides/USE_JBDS.md#use-jboss-developer-studio-or-eclipse-to-run-the-quickstarts) 
 
 Debug the Application
 ------------------------------------
 
 <!--Contributor: For example: -->
 
-If you want to debug the source code or look at the Javadocs of any library in the project, run either of the following commands to pull them into your local repository. The IDE should then detect them.
+If you want to debug the source code of any library in the project, run the following command to pull the source into your local repository. The IDE should then detect it.
 
     mvn dependency:sources
-    mvn dependency:resolve -Dclassifier=javadoc
+   
 
 
 
@@ -247,7 +246,7 @@ You can now deploy the changes to your OpenShift application using git as follow
 
 The final push command triggers the OpenShift infrastructure to build and deploy the changes. 
 
-Note that the `openshift` profile in `pom.xml` is activated by OpenShift, and causes the war build by openshift to be copied to the `deployments/` directory, and deployed without a context path.
+Note that the `openshift` profile in `pom.xml` is activated by OpenShift, and causes the WAR build by openshift to be copied to the `deployments/` directory, and deployed without a context path.
 
 ### Test the OpenShift Application
 

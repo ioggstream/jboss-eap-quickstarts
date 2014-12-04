@@ -1,16 +1,16 @@
-cmt: Container Managed Transactions - Example Using Transactions That Are Managed by the Container 
-==================================================================================================
+cmt: Container Managed Transactions (CMT) 
+=========================================
 Author: Tom Jenkinson  
 Level: Intermediate  
-Technologies: EJB, Container Managed Transactions (CMT)  
-Summary: EJB that demonstrates container-managed transactions (CMT)  
+Technologies: EJB, CMT  
+Summary: The `cmt` quickstart demonstrates Container-Managed Transactions (CMT), showing how to use transactions managed by the container.  
 Target Product: EAP  
-Product Versions: EAP 6.1, EAP 6.2, EAP 6.3  
+Product Versions: EAP 6.1, EAP 6.2, EAP 6.3, EAP 6.4  
 Source: <https://github.com/jboss-developer/jboss-eap-quickstarts/>  
 
 ## What is it?
 
-This quickstart demonstrates using transactions managed by the container. It is a fairly typical scenario of updating a database and sending a JMS message in the same transaction. A simple MDB is provided that prints out the message sent but this is not a transactional MDB and is purely provided for debugging purposes.
+The `cmt` quickstart demonstrates using transactions managed by the container. It is a fairly typical scenario of updating a database and sending a JMS message in the same transaction. A simple MDB is provided that prints out the message sent but this is not a transactional MDB and is purely provided for debugging purposes.
 
 Aspects touched upon in the code:
 
@@ -20,12 +20,12 @@ Aspects touched upon in the code:
 
 After users complete this quickstart, they are invited to run through the following quickstarts:
 
-1. _jts_ - The JTS quickstart builds upon this quickstart by distributing the CustomerManager and InvoiceManager
-2. _jts-distributed-crash-rec_ - The crash recovery quickstart builds upon the _jts_ quickstart by demonstrating the fault tolerance of JBossAS
+1. [jts](../jts/README.md) - The JTS quickstart builds upon this quickstart by distributing the CustomerManager and InvoiceManager
+2. [jts-distributed-crash-rec](../jts-distributed-crash-rec/README.md) - The crash recovery quickstart builds upon the [jts](../jts/README.md) quickstart by demonstrating the fault tolerance of JBoss EAP.
 
 ### What are container managed transactions?
 
-Prior to EJB, getting the right incantation to ensure sound transactional operation of the business logic was a highly specialised skill. Although this still holds true to a great extent, EJB has provided a series of improvements to to allow simplified transaction demarcation notation that is therefore easier to read and test. 
+Prior to EJB, getting the right incantation to ensure sound transactional operation of the business logic was a highly specialised skill. Although this still holds true to a great extent, EJB has provided a series of improvements to allow simplified transaction demarcation notation that is therefore easier to read and test. 
 
 With CMT, the EJB container sets the boundaries of a transaction. This differs from BMT (bean managed transactions) where the developer is responsible for initiating and completing a transaction via the methods begin, commit, rollback on a <code>javax.transaction.UserTransaction</code>.
 
@@ -37,9 +37,9 @@ The available options for this annotation are as follows:
 
 * Required - As demonstrated in the quickstart. If a transaction does not already exist, this will initiate a transaction and complete it for you, otherwise the business logic will be integrated into the existing transaction
 * RequiresNew - If there is already a transaction running, it will be suspended, the work performed within a new transaction which is completed at exit of the method and then the original transaction resumed. 
-* Mandatory - If there is no transaction running, calling a business method with is annotated with this will result in an error
+* Mandatory - If there is no transaction running, calling a business method with this annotation will result in an error
 * NotSupported - If there is a transaction running, it will be suspended and no transaction will be initiated for this business method
-* Supports - This will run the method within a transaction if a transaction exists, alternatively, if there is no transaction running the method will not be executed within the scope of a transaction 
+* Supports - This will run the method within a transaction if a transaction exists, alternatively, if there is no transaction running, the method will not be executed within the scope of a transaction 
 * Never - If the client has a transaction running and does not suspend it but calls a method annotated with Never then an EJB exception will be raised.
 
 
@@ -131,13 +131,15 @@ Undeploy the Archive
 
 Run the Quickstart in JBoss Developer Studio or Eclipse
 -------------------------------------
-You can also start the server and deploy the quickstarts from Eclipse using JBoss tools. For more information, see [Use JBoss Developer Studio or Eclipse to Run the Quickstarts](https://github.com/jboss-developer/jboss-developer-shared-resources/blob/master/guides/USE_JDBS.md#use-jboss-developer-studio-or-eclipse-to-run-the-quickstarts) 
+You can also start the server and deploy the quickstarts or run the Arquillian tests from Eclipse using JBoss tools. For more information, see [Use JBoss Developer Studio or Eclipse to Run the Quickstarts](https://github.com/jboss-developer/jboss-developer-shared-resources/blob/master/guides/USE_JBDS.md#use-jboss-developer-studio-or-eclipse-to-run-the-quickstarts) 
+
+_NOTE:_ Within JBoss Developer Studio, be sure to define a server runtime environment that uses the `standalone-full.xml` configuration file.
 
 
 Debug the Application
 ------------------------------------
 
-If you want to debug the source code or look at the Javadocs of any library in the project, run either of the following commands to pull them into your local repository. The IDE should then detect them.
+If you want to debug the source code of any library in the project, run the following command to pull the source into your local repository. The IDE should then detect it.
 
         mvn dependency:sources
-        mvn dependency:resolve -Dclassifier=javadoc
+

@@ -1,17 +1,17 @@
-helloworld-mdb: Helloword Using an MDB (Message-Driven Bean)
+helloworld-mdb: Helloworld Using an MDB (Message-Driven Bean)
 ============================================================
 Author: Serge Pagop, Andy Taylor, Jeff Mesnil  
 Level: Intermediate  
 Technologies: JMS, EJB, MDB  
-Summary: Demonstrates the use of JMS 1.1 and EJB 3.1 Message-Driven Bean  
+Summary: The `helloworld-mdb` quickstart uses *JMS 1.1* and *EJB 3.1 Message-Driven Bean* (MDB) to create and deploy JMS topic and queue resources in JBoss EAP.  
 Target Product: EAP  
-Product Versions: EAP 6.1, EAP 6.2, EAP 6.3  
+Product Versions: EAP 6.1, EAP 6.2, EAP 6.3, EAP 6.4  
 Source: <https://github.com/jboss-developer/jboss-eap-quickstarts/>  
 
 What is it?
 -----------
 
-This example demonstrates the use of *JMS 1.1* and *EJB 3.1 Message-Driven Bean* in Red Hat JBoss Enterprise Application Platform.
+The `helloworld-mdb` quickstart demonstrates the use of *JMS 1.1* and *EJB 3.1 Message-Driven Bean* in Red Hat JBoss Enterprise Application Platform.
 
 This project creates two JMS resources:
 
@@ -94,16 +94,18 @@ Undeploy the Archive
 
 Run the Quickstart in JBoss Developer Studio or Eclipse
 -------------------------------------
-You can also start the server and deploy the quickstarts from Eclipse using JBoss tools. For more information, see [Use JBoss Developer Studio or Eclipse to Run the Quickstarts](https://github.com/jboss-developer/jboss-developer-shared-resources/blob/master/guides/USE_JDBS.md#use-jboss-developer-studio-or-eclipse-to-run-the-quickstarts) 
+You can also start the server and deploy the quickstarts or run the Arquillian tests from Eclipse using JBoss tools. For more information, see [Use JBoss Developer Studio or Eclipse to Run the Quickstarts](https://github.com/jboss-developer/jboss-developer-shared-resources/blob/master/guides/USE_JBDS.md#use-jboss-developer-studio-or-eclipse-to-run-the-quickstarts) 
+
+_NOTE:_ Within JBoss Developer Studio, be sure to define a server runtime environment that uses the `standalone-full.xml` configuration file.
 
 
 Debug the Application
 ------------------------------------
 
-If you want to debug the source code or look at the Javadocs of any library in the project, run either of the following commands to pull them into your local repository. The IDE should then detect them.
+If you want to debug the source code of any library in the project, run the following command to pull the source into your local repository. The IDE should then detect it.
 
     mvn dependency:sources
-    mvn dependency:resolve -Dclassifier=javadoc
+   
 
 
 Build and Deploy the Quickstart - to OpenShift
@@ -169,7 +171,7 @@ HornetQ is enabled by default in `.openshift/config/standalone.xml`. There is no
 
 You can now deploy the changes to your OpenShift application using git as follows:
 
-    git add src pom.xml .openshift
+    git add src pom.xml
     git commit -m "helloworld-mdb quickstart on OpenShift"
     git push
 
@@ -181,7 +183,7 @@ Note that the `openshift` profile in the `pom.xml` file is activated by OpenShif
 
 When the push command returns you can test the application by getting the following URL either via a browser or using tools such as curl or wget. Be sure to replace the `YOUR_DOMAIN_NAME` in the URL with your OpenShift account domain name.
 
-* <http://helloworldmdb-YOUR_DOMAIN_NAME.rhcloud.com/> to send messages to the queue
+* <http://helloworldmdb-YOUR_DOMAIN_NAME.rhcloud.com/HelloWorldMDBServletClient> to send messages to the queue
 * <http://helloworldmdb-YOUR_DOMAIN_NAME.rhcloud.com/HelloWorldMDBServletClient?topic> to send messages to the topic
 
 If the application has run succesfully you should see some output in the browser.

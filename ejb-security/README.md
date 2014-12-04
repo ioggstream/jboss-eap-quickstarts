@@ -1,21 +1,21 @@
-ejb-security:  Using Java EE Declarative Security to Control Access to EJB 3
+ejb-security:  Using Java EE Declarative Security to Control Access
 ====================
 Author: Sherif F. Makary  
 Level: Intermediate  
 Technologies: EJB, Security  
-Summary: Shows how to use Java EE Declarative Security to Control Access to EJB 3  
+Summary: The `ejb-security` quickstart demonstrates the use of Java EE declarative security to control access to Servlets and EJBs in JBoss EAP.  
 Target Product: EAP  
-Product Versions: EAP 6.1, EAP 6.2, EAP 6.3  
+Product Versions: EAP 6.1, EAP 6.2, EAP 6.3, EAP 6.4  
 Source: <https://github.com/jboss-developer/jboss-eap-quickstarts/>  
 
 What is it?
 -----------
 
-This example demonstrates the use of Java EE declarative security to control access to Servlets and EJBs in Red Hat JBoss Enterprise Application Platform.
+The `ejb-security` quickstart demonstrates the use of Java EE declarative security to control access to Servlets and EJBs in Red Hat JBoss Enterprise Application Platform.
 
 This quickstart takes the following steps to implement EJB security:
 
-1. Define the security domain. This can be done either in the `security` subsytem of the `standalone.xml` configuration file or in the `WEB-INF/jboss-web.xml` configuration file. This quickstart uses the `other` security domain which is provided by default in the `standalone.xml` file:
+1. Define the security domain. This can be done either in the `security` subsytem of the `standalone.xml` configuration file or in the `WEB-INF/jboss-web.xml` configuration file. This quickstart uses the `other` security domain, which is provided by default in the `standalone.xml` file.
 
         <security-domain name="other" cache-type="default">
             <authentication>
@@ -73,7 +73,7 @@ To add the application users, open a command prompt and type the following comma
           EAP_HOME\bin\add-user.bat -a -u 'user1' -p 'password1!' -g 'app-user'
 
 If you prefer, you can use the add-user utility interactively. 
-For an example of how to use the add-user utility, see instructions in the root README file located here: [Add an Application User](https://github.com/jboss-developer/jboss-developer-shared-resources/blob/master/guides/CREATE_USERS.md#add-an-application-user).
+For an example of how to use the add-user utility, see the instructions located here: [Add an Application User](https://github.com/jboss-developer/jboss-developer-shared-resources/blob/master/guides/CREATE_USERS.md#add-an-application-user).
 
 
 Start the JBoss EAP Server
@@ -147,13 +147,13 @@ Undeploy the Archive
 
 Run the Quickstart in JBoss Developer Studio or Eclipse
 -------------------------------------
-You can also start the server and deploy the quickstarts from Eclipse using JBoss tools. For more information, see [Use JBoss Developer Studio or Eclipse to Run the Quickstarts](https://github.com/jboss-developer/jboss-developer-shared-resources/blob/master/guides/USE_JDBS.md#use-jboss-developer-studio-or-eclipse-to-run-the-quickstarts) 
+You can also start the server and deploy the quickstarts or run the Arquillian tests from Eclipse using JBoss tools. For more information, see [Use JBoss Developer Studio or Eclipse to Run the Quickstarts](https://github.com/jboss-developer/jboss-developer-shared-resources/blob/master/guides/USE_JBDS.md#use-jboss-developer-studio-or-eclipse-to-run-the-quickstarts) 
 
 
 Debug the Application
 ------------------------------------
 
-If you want to debug the source code or look at the Javadocs of any library in the project, run either of the following commands to pull them into your local repository. The IDE should then detect them.
+If you want to debug the source code of any library in the project, run the following command to pull the source into your local repository. The IDE should then detect it.
 
     mvn dependency:sources
-    mvn dependency:resolve -Dclassifier=javadoc
+   

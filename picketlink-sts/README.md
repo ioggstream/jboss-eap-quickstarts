@@ -1,17 +1,17 @@
-picketlink-sts: PicketLink Federation: WS-Trust Security Token Service 
+picketlink-sts: PicketLink Federation: WS-Trust Security Token Service
 ======================================================
 Author: Peter Skopek  
 Level: Advanced  
 Technologies: WS-Trust, SAML  
-Summary: This project is an implementation of a WS-Trust Security Token Service.  
+Summary: The `picketlink-sts` quickstart demonstrates how to deploy a fully compliant WS-Trust Security Token Service (STS).  
 Target Product: EAP  
-Product Versions: EAP 6.1, EAP 6.2, EAP 6.3  
+Product Versions: EAP 6.1, EAP 6.2, EAP 6.3, EAP 6.4  
 Source: <https://github.com/jboss-developer/jboss-eap-quickstarts/>  
  
 What is it?
 -----------
 
-This example demonstrates how to deploy a fully compliant WS-Trust Security Token Service (STS).
+The `picketlink-sts` quickstart demonstrates how to deploy a fully compliant WS-Trust Security Token Service (STS).
 
 WS-Trust extends the WS-Security specification to allow the issuance, renewal, and validation of security tokens. 
 Many WS-Trust functions center around the use of a "Security Token Service", or STS. 
@@ -107,11 +107,12 @@ You configure the security domain by running JBoss CLI commands. For your conven
         {"outcome" => "success"}
 
    The batch file also restarts the server.
+5. Stop the JBoss EAP server.
    
 Review the Modified Server Configuration
 -----------------------------------
 
-If you want to review and understand newly added XML configuration, stop the JBoss EAP server and open the  `EAP_HOME/standalone/configuration/standalone.xml` file. 
+After stopping the server, open the `EAP_HOME/standalone/configuration/standalone.xml` file and review the changes.
 
 The following `picketlink-sts` security-domain was added to the `security` subsystem.
    
@@ -149,11 +150,6 @@ _NOTE: The following build command assumes you have configured your Maven user s
         mvn clean install jboss-as:deploy
 4. This deploys `target/jboss-picketlink-sts.war` to the running instance of the server.
 
-
-Review the Modified Server Configuration
------------------------------------
-
-If you want to review and understand newly added XML configuration, stop the JBoss EAP server and open the  `EAP_HOME/standalone/configuration/standalone.xml` file. 
 
 Access the Application 
 ---------------------
@@ -217,13 +213,15 @@ You can undeploy the quickstart and remove the security domain configuration in 
 
 Run the Quickstart in JBoss Developer Studio or Eclipse
 -------------------------------------
-You can also start the server and deploy the quickstarts from Eclipse using JBoss tools. For more information, see [Use JBoss Developer Studio or Eclipse to Run the Quickstarts](https://github.com/jboss-developer/jboss-developer-shared-resources/blob/master/guides/USE_JDBS.md#use-jboss-developer-studio-or-eclipse-to-run-the-quickstarts) 
+You can also start the server and deploy the quickstarts or run the Arquillian tests from Eclipse using JBoss tools. For more information, see [Use JBoss Developer Studio or Eclipse to Run the Quickstarts](https://github.com/jboss-developer/jboss-developer-shared-resources/blob/master/guides/USE_JBDS.md#use-jboss-developer-studio-or-eclipse-to-run-the-quickstarts) 
+
+_NOTE:_ Be sure to configure the security domain by running the JBoss CLI commands as described in the section above entitled *Configure the JBoss EAP Server*. Stop the server at the end of that step.
 
 
 Debug the Application
 ------------------------------------
 
-If you want to debug the source code or look at the Javadocs of any library in the project, run either of the following commands to pull them into your local repository. The IDE should then detect them.
+If you want to debug the source code of any library in the project, run the following command to pull the source into your local repository. The IDE should then detect it.
 
       mvn dependency:sources
-      mvn dependency:resolve -Dclassifier=javadoc
+     

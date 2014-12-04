@@ -1,18 +1,18 @@
-tasks: Testing JPA with Arquillian
+tasks: Test JPA with Arquillian
 ==================================
 Author: Oliver Kiss, Lukas Fryc  
 Level: Intermediate  
 Technologies: JPA, Arquillian  
-Summary: Demonstrates testing JPA using Arquillian  
+Summary: The `tasks` quickstart includes a persistence unit and sample persistence code to demonstrates how to use JPA 2.0 for database access in JBoss EAP.  
 Target Product: EAP  
-Product Versions: EAP 6.1, EAP 6.2, EAP 6.3  
+Product Versions: EAP 6.1, EAP 6.2, EAP 6.3, EAP 6.4  
 Source: <https://github.com/jboss-developer/jboss-eap-quickstarts/>  
 
 
 What is it?
 -----------
 
-This project demonstrates how to use JPA 2.0 in Red Hat JBoss Enterprise Application Platform. 
+The `tasks` quickstart demonstrates how to use JPA 2.0 in Red Hat JBoss Enterprise Application Platform. 
 
 It includes a persistence unit and some sample persistence code to introduce you database access in enterprise Java. 
 
@@ -57,16 +57,6 @@ _NOTE: The following commands assume you have configured your Maven user setting
 3. Type the following command to run the test goal with the following profile activated:
 
         mvn clean test -Parq-jbossas-remote 
-
-
-Run tests from JBDS
------------------------
-
-To be able to run the tests from JBDS, first set the active Maven profile in project properties to be either 'arq-jbossas-managed' for running on
-managed server or 'arq-jbossas-remote' for running on remote server.
-
-To run the tests, right click on the project or individual classes and select Run As --> JUnit Test in the context menu.
-
 
 Investigate the Console Output
 ----------------------------
@@ -116,13 +106,13 @@ Generating ID for a new entity and inserting the entity into the database:
 
 Run the Quickstart in JBoss Developer Studio or Eclipse
 -------------------------------------
-You can also start the server and deploy the quickstarts from Eclipse using JBoss tools. For more information, see [Use JBoss Developer Studio or Eclipse to Run the Quickstarts](https://github.com/jboss-developer/jboss-developer-shared-resources/blob/master/guides/USE_JDBS.md#use-jboss-developer-studio-or-eclipse-to-run-the-quickstarts) 
+You can also start the server and deploy the quickstarts or run the Arquillian tests from Eclipse using JBoss tools. For more information, see [Use JBoss Developer Studio or Eclipse to Run the Quickstarts](https://github.com/jboss-developer/jboss-developer-shared-resources/blob/master/guides/USE_JBDS.md#use-jboss-developer-studio-or-eclipse-to-run-the-quickstarts) 
 
 
 Debug the Application
 ------------------------------------
 
-If you want to debug the source code or look at the Javadocs of any library in the project, run either of the following commands to pull them into your local repository. The IDE should then detect them.
+If you want to debug the source code of any library in the project, run the following command to pull the source into your local repository. The IDE should then detect it.
 
         mvn dependency:sources
-        mvn dependency:resolve -Dclassifier=javadoc
+

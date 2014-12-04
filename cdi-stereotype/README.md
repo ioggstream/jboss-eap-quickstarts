@@ -1,24 +1,25 @@
-cdi-stereotype: Example Using CDI-stereotype.
+cdi-stereotype: Example Using CDI Stereotype.
 =================================================================================
 Author: Ievgen Shulga  
 Level: Intermediate  
-Technologies: JPA,JSF,EJB  
-Summary: Demonstrates using cdi-stereotype for logging and auditing  
+Technologies: JPA, JSF, EJB  
+Summary: The `cdi-stereotype` quickstart demonstrates how to apply CDI stereotypes to beans to encapsulate CDI interceptor bindings and CDI alternatives.  
 Target Product: EAP  
-Product Versions: EAP 6.1, EAP 6.2, EAP 6.3  
+Product Versions: EAP 6.1, EAP 6.2, EAP 6.3, EAP 6.4  
 Source: <https://github.com/jboss-developer/jboss-eap-quickstarts/>  
 
 What is it?
 -----------
-A stereotype is an annotation, annotated `@Stereotype`, that packages several other annotations.
-This quickstart is an extension of the `cdi-interceptors` quickstart and demonstrates how to use a CDI stereotype. Stereotypes allow a developer to declare common metadata for beans in a central place. A stereotype is an annotation, annotated `@Stereotype`, that packages several other annotations.
+
+The `cdi-stereotype` quickstart is an extension of the [cdi-interceptors](../cdi_interceptors/README.md) quickstart and demonstrates how to use a CDI stereotype. A stereotype is an annotation, annotated `@Stereotype`, that packages several other annotations. Stereotypes allow a developer to declare common metadata for beans in a central place. 
+
 In this example, the stereotype encapsulates the following :
 
-* All beans with this stereotype inherit the following interceptor bindings: @Logging and @Audit
+* All beans with this stereotype inherit the following interceptor bindings: `@Logging` and `@Audit`
 * All beans with this stereotype are alternatives
 
-Quickstart defines stereotype with 2 interceptors bindings (`@Logging` and `@Audit`) to be inherited by all beans with that stereotype. It also indicates that all beans to which it is applied are `@Alternatives`. An alternative stereotype lets us classify beans by deployment scenario.
-Arquillian tests added in cdi-interceptors quickstart.
+This quickstart defines stereotype with 2 interceptors bindings (`@Logging` and `@Audit`) to be inherited by all beans with that stereotype. It also indicates that all beans to which it is applied are `@Alternatives`. An alternative stereotype lets us classify beans by deployment scenario.
+Arquillian tests added in [cdi-interceptors](../cdi_interceptors/README.md) quickstart.
 
 System requirements
 -------------------
@@ -96,13 +97,13 @@ Undeploy the Archive
 
 Run the Quickstart in JBoss Developer Studio or Eclipse
 -------------------------------------
-You can also start the server and deploy the quickstarts from Eclipse using JBoss tools. For more information, see [Use JBoss Developer Studio or Eclipse to Run the Quickstarts](https://github.com/jboss-developer/jboss-developer-shared-resources/blob/master/guides/USE_JDBS.md#use-jboss-developer-studio-or-eclipse-to-run-the-quickstarts) 
+You can also start the server and deploy the quickstarts or run the Arquillian tests from Eclipse using JBoss tools. For more information, see [Use JBoss Developer Studio or Eclipse to Run the Quickstarts](https://github.com/jboss-developer/jboss-developer-shared-resources/blob/master/guides/USE_JBDS.md#use-jboss-developer-studio-or-eclipse-to-run-the-quickstarts) 
 
 
 Debug the Application
 ------------------------------------
 
-If you want to debug the source code or look at the Javadocs of any library in the project, run either of the following commands to pull them into your local repository. The IDE should then detect them.
+If you want to debug the source code of any library in the project, run the following command to pull the source into your local repository. The IDE should then detect it.
 
         mvn dependency:sources
-        mvn dependency:resolve -Dclassifier=javadoc
+

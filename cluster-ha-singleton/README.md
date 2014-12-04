@@ -1,18 +1,18 @@
-cluster-ha-singleton: A SingletonService deployed in a JAR started by SingletonStartup and accessed by an EJB
+cluster-ha-singleton: A SingletonService Started by a SingletonStartup
 =============================================================================================================
 Author: Wolf-Dieter Fink  
 Level: Advanced  
 Technologies: EJB, HASingleton, JNDI  
-Summary: A SingletonService deployed in a JAR started by SingletonStartup and accessed by an EJB  
+Summary: The `cluster-ha-singleton` quickstart deploys a Service, wrapped with the SingletonService decorator, and used as a cluster-wide singleton service.  
 Target Product: EAP  
-Product Versions: EAP 6.1, EAP 6.2, EAP 6.3  
+Product Versions: EAP 6.1, EAP 6.2, EAP 6.3, EAP 6.4  
 Source: <https://github.com/jboss-developer/jboss-eap-quickstarts/>  
 
 What is it?
 -----------
 
-This example demonstrates the deployment of a Service that is wrapped with the SingletonService decorator
-and used as a cluster-wide singleton service.
+The `cluster-ha-singleton` quickstart demonstrates the deployment of a Service that is wrapped with the 
+SingletonService decorator and used as a cluster-wide singleton service.
 The service activates a scheduled timer, which is started only once in the cluster.
 
 The example is composed of a Maven subproject and a parent project. The projects are as follows:
@@ -33,8 +33,6 @@ All you need to build this project is Java 6.0 (Java SDK 1.6) or later, Maven 3.
  
 Configure Maven
 ---------------
-
-You can copy or link to the Maven configuration information in the README file in the root folder of the quickstarts. For example:
 
 If you have not yet done so, you must [Configure Maven](https://github.com/jboss-developer/jboss-developer-shared-resources/blob/master/guides/CONFIGURE_MAVEN.md#configure-maven-to-build-and-deploy-the-quickstarts) before testing the quickstarts.
 
@@ -121,14 +119,14 @@ _Note: You may see the following exception when you undeploy the archive from th
 
 Run the Quickstart in JBoss Developer Studio or Eclipse
 -------------------------------------
-You can also start the server and deploy the quickstarts from Eclipse using JBoss tools. For more information, see [Use JBoss Developer Studio or Eclipse to Run the Quickstarts](https://github.com/jboss-developer/jboss-developer-shared-resources/blob/master/guides/USE_JDBS.md#use-jboss-developer-studio-or-eclipse-to-run-the-quickstarts) 
+You can also start the server and deploy the quickstarts or run the Arquillian tests from Eclipse using JBoss tools. For more information, see [Use JBoss Developer Studio or Eclipse to Run the Quickstarts](https://github.com/jboss-developer/jboss-developer-shared-resources/blob/master/guides/USE_JBDS.md#use-jboss-developer-studio-or-eclipse-to-run-the-quickstarts) 
 
 Debug the Application
 ------------------------------------
 
-If you want to debug the source code or look at the Javadocs of any library in the project, run either of the following commands to pull them into your local repository. The IDE should then detect them.
+If you want to debug the source code of any library in the project, run the following command to pull the source into your local repository. The IDE should then detect it.
 
     mvn dependency:sources
-    mvn dependency:resolve -Dclassifier=javadoc
+   
 
 ------------------------------------

@@ -1,17 +1,17 @@
-bean-validation: Bean Validation via Arquillian Example
+bean-validation: Bean Validation Tested Using Arquillian
 =======================================================
 Author: Karel Piwko  
 Level: Beginner  
-Technologies: Bean Validation, JPA  
-Summary: Shows how to use Arquillian to test Bean Validation  
+Technologies: CDI, JPA, BV  
+Summary: The `bean-validation` quickstart provides Arquillian tests to demonstrate how to use CDI 1.0, JPA 2.0 and Bean Validation 1.0.  
 Target Product: EAP  
-Product Versions: EAP 6.1, EAP 6.2, EAP 6.3  
+Product Versions: EAP 6.1, EAP 6.2, EAP 6.3, EAP 6.4  
 Source: <https://github.com/jboss-developer/jboss-eap-quickstarts/>  
 
 What is it?
 -----------
 
-This project demonstrates how to use CDI 1.0, JPA 2.0 and Bean Validation 1.0. It includes a persistence unit and some sample persistence code to introduce you to database access in enterprise Java. 
+The `bean-validation` quickstart demonstrates how to use CDI 1.0, JPA 2.0 and Bean Validation 1.0. It includes a persistence unit and some sample persistence code to introduce you to database access in enterprise Java. 
 
 This quickstart does not contain a user interface layer. The purpose of this project is to show you how to test bean validation with Arquillian. If you want to see an example of how to test bean validation with a user interface, look at the [kitchensink](../kitchensink/README.md) example.
 
@@ -87,14 +87,14 @@ _Note:_ You will see the following warnings and errors in the server log. Hibern
 
 Test the Quickstart in JBoss Developer Studio or Eclipse
 -------------------------------------
-You can also start the server and deploy the quickstarts from Eclipse using JBoss tools. For more information, see [Use JBoss Developer Studio or Eclipse to Run the Quickstarts](https://github.com/jboss-developer/jboss-developer-shared-resources/blob/master/guides/USE_JDBS.md#use-jboss-developer-studio-or-eclipse-to-run-the-quickstarts) 
+You can also start the server and deploy the quickstarts or run the Arquillian tests from Eclipse using JBoss tools. For more information, see [Use JBoss Developer Studio or Eclipse to Run the Quickstarts](https://github.com/jboss-developer/jboss-developer-shared-resources/blob/master/guides/USE_JBDS.md#use-jboss-developer-studio-or-eclipse-to-run-the-quickstarts) 
 
 
 Debug the Application
 ------------------------------------
 
-If you want to debug the source code or look at the Javadocs of any library in the project, run either of the following commands to pull them into your local repository. The IDE should then detect them.
+If you want to debug the source code of any library in the project, run the following command to pull the source into your local repository. The IDE should then detect it.
 
         mvn dependency:sources
-        mvn dependency:resolve -Dclassifier=javadoc
+
 

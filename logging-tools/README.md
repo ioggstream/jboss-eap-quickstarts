@@ -3,15 +3,15 @@ jboss-logging-tools: Internationalization and Localization with JBoss Logging To
 Author: Darrin Mison  
 Level: Beginner  
 Technologies: JBoss Logging Tools  
-Summary: Demonstrates the use of JBoss Logging Tools to create internationalized loggers, exceptions, and generic messages  
+Summary: The `jboss-logging-tools` quickstart shows how to use JBoss Logging Tools to create internationalized loggers, exceptions, and messages and localize them.  
 Target Product: EAP  
-Product Versions: EAP 6.1, EAP 6.2, EAP 6.3  
+Product Versions: EAP 6.1, EAP 6.2, EAP 6.3, EAP 6.4  
 Source: <https://github.com/jboss-developer/jboss-eap-quickstarts/>  
 
 What is it?
 ------------
 
-This quick start demonstrates the use of JBoss Logging Tools to create internationalized loggers, exceptions, and generic messages; and then provide localizations for them. This is done using a simple JAX-RS service. Translations in French(fr-FR), German(de-DE), and Swedish (sv-SE) are provided courtesy of <http://translate.google.com> for demonstration. My apologies if they are less than ideal translations.
+The `jboss-logging-tools` quickstart demonstrates the use of JBoss Logging Tools to create internationalized loggers, exceptions, and generic messages; and then provide localizations for them. This is done using a simple JAX-RS service. Translations in French(fr-FR), German(de-DE), and Swedish (sv-SE) are provided courtesy of <http://translate.google.com> for demonstration. My apologies if they are less than ideal translations.
 
 Once the quick start is deployed you can access it using URLs documented below.
 
@@ -74,16 +74,6 @@ _NOTE: The following build command assumes you have configured your Maven user s
 
 4. This will deploy `target/jboss-logging-tools.war` to the running instance of the server.
 
-_Note:_ You may see the following warnings in the server log. 
-
-        [WARNING] logging-tools/src/main/java/org/jboss/as/quickstarts/loggingToolsQS/exceptions/GreeterExceptionBundle.java:[25,8] Generating translation class.
-        [WARNING] logging-tools/src/main/java/org/jboss/as/quickstarts/loggingToolsQS/messages/GreetingMessagesBundle.java:[24,8] Generating translation class.
-        [WARNING] logging-tools/src/main/java/org/jboss/as/quickstarts/loggingToolsQS/exceptions/DateExceptionsBundle.java:[27,8] Generating translation class.
-        [WARNING] logging-tools/src/main/java/org/jboss/as/quickstarts/loggingToolsQS/loggers/DateLogger.java:[30,8] Generating translation class.
-        [WARNING] logging-tools/src/main/java/org/jboss/as/quickstarts/loggingToolsQS/loggers/GreeterLogger.java:[26,8] Generating translation class.
-
-This is due to a bug in the Maven compiler plug-in where all CompilerMessages are logged at warning or error level, even if they are not warnings or errors. A fix has been submitted but has not yet been applied. Details can be found here: <http://jira.codehaus.org/browse/MCOMPILER-224>.
-
 
 Access the application 
 ---------------------
@@ -134,15 +124,15 @@ Undeploy the Archive
 
 Run the Quickstart in JBoss Developer Studio or Eclipse
 -------------------------------------
-You can also start the server and deploy the quickstarts from Eclipse using JBoss tools. For more information, see [Use JBoss Developer Studio or Eclipse to Run the Quickstarts](https://github.com/jboss-developer/jboss-developer-shared-resources/blob/master/guides/USE_JDBS.md#use-jboss-developer-studio-or-eclipse-to-run-the-quickstarts) 
+You can also start the server and deploy the quickstarts or run the Arquillian tests from Eclipse using JBoss tools. For more information, see [Use JBoss Developer Studio or Eclipse to Run the Quickstarts](https://github.com/jboss-developer/jboss-developer-shared-resources/blob/master/guides/USE_JBDS.md#use-jboss-developer-studio-or-eclipse-to-run-the-quickstarts) 
 
 
 Debug the Application
 ------------------------------------
 
-If you want to debug the source code or look at the Javadocs of any library in the project, run either of the following commands to pull them into your local repository. The IDE should then detect them.
+If you want to debug the source code of any library in the project, run the following command to pull the source into your local repository. The IDE should then detect it.
 
       mvn dependency:sources
-      mvn dependency:resolve -Dclassifier=javadoc
+     
 
 

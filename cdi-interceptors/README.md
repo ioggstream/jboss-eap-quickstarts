@@ -1,16 +1,17 @@
-cdi-interceptors: Example Using CDI-interceptors
+cdi-interceptors: Example Using CDI Interceptors
 =================================================================================
 Author: Ievgen Shulga  
 Level: Intermediate  
-Technologies: JPA,JSF,EJB  
-Summary: Demonstrates using cdi-interceptors for logging and auditing  
+Technologies: JPA, JSF, EJB  
+Summary: The `cdi-interceptors` quickstart demonstrates how to use CDI interceptors for cross-cutting concerns such as logging and simple auditing.  
 Target Product: EAP  
-Product Versions: EAP 6.1, EAP 6.2, EAP 6.3  
+Product Versions: EAP 6.1, EAP 6.2, EAP 6.3, EAP 6.4  
 Source: <https://github.com/jboss-developer/jboss-eap-quickstarts/>  
 
 What is it?
 -----------
-The quickstart demonstrates using CDI interceptors for cross-cutting concerns such as logging and simple auditing. 
+
+The `cdi-interceptors` quickstart demonstrates using CDI interceptors for cross-cutting concerns such as logging and simple auditing. 
 Interceptors can be applied to any business methods or beans, simply by adding appropriate interceptor binding type annotation. The project contains EJB service that can create and retrieve object from database.
 This example demonstrates 2 interceptors: `AuditInterceptor` and `LoggingInterceptor`
 
@@ -104,13 +105,13 @@ _NOTE: The following commands assume you have configured your Maven user setting
 
 Run the Quickstart in JBoss Developer Studio or Eclipse
 -------------------------------------
-You can also start the server and deploy the quickstarts from Eclipse using JBoss tools. For more information, see [Use JBoss Developer Studio or Eclipse to Run the Quickstarts](https://github.com/jboss-developer/jboss-developer-shared-resources/blob/master/guides/USE_JDBS.md#use-jboss-developer-studio-or-eclipse-to-run-the-quickstarts) 
+You can also start the server and deploy the quickstarts or run the Arquillian tests from Eclipse using JBoss tools. For more information, see [Use JBoss Developer Studio or Eclipse to Run the Quickstarts](https://github.com/jboss-developer/jboss-developer-shared-resources/blob/master/guides/USE_JBDS.md#use-jboss-developer-studio-or-eclipse-to-run-the-quickstarts) 
 
 
 Debug the Application
 ------------------------------------
 
-If you want to debug the source code or look at the Javadocs of any library in the project, run either of the following commands to pull them into your local repository. The IDE should then detect them.
+If you want to debug the source code of any library in the project, run the following command to pull the source into your local repository. The IDE should then detect it.
 
         mvn dependency:sources
-        mvn dependency:resolve -Dclassifier=javadoc
+

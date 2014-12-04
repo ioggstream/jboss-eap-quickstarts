@@ -3,19 +3,19 @@ hibernate4: How to Use Hibernate 4 in an Application
 Author: Madhumita Sadhukhan  
 Level: Intermediate  
 Technologies: Hibernate 4  
-Summary: This quickstart performs the same functions as the _hibernate3_ quickstart, but uses Hibernate 4 for database access. Compare this quickstart to the _hibernate3_ quickstart to see the changes needed to run with Hibernate 4.  
+Summary: The `hibernate4` quickstart demonstrates how to use Hibernate ORM 4 over JPA 2.0, using Hibernate-Core and Hibernate Bean Validation, and EJB 3.1.  
 Target Product: EAP  
-Product Versions: EAP 6.1, EAP 6.2, EAP 6.3  
+Product Versions: EAP 6.1, EAP 6.2, EAP 6.3, EAP 6.4  
 Source: <https://github.com/jboss-developer/jboss-eap-quickstarts/>  
 
 What is it?
 -----------
 
-This quickstart is based upon the kitchensink example, but demonstrates how to use Hibernate ORM 4 over JPA in Red Hat JBoss Enterprise Application Platform.
+The `hibernate4` quickstart is based upon the [kitchensink](../kitchensink/README.md) example, but demonstrates how to use Hibernate Object/Relational Mapping (ORM) 4 over JPA 2.0 in Red Hat JBoss Enterprise Application Platform.
 
-This project is setup to allow you to create a compliant Java EE 6 application using JSF 2.0, CDI 1.0, EJB 3.1, JPA 2.0 , Hibernate-Core and Hibernate Bean Validation.  It includes a persistence unit associated with Hibernate session and some sample persistence and transaction code to help you with database access in enterprise Java. 
+This project is setup to allow you to create a compliant Java EE 6 application using JSF 2.1, CDI 1.0, EJB 3.1, JPA 2.0 , Hibernate-Core and Hibernate Bean Validation.  It includes a persistence unit associated with Hibernate session and some sample persistence and transaction code to help you with database access in enterprise Java. 
 
-You can compare this quickstart to the `hibernate3` quickstart to see the code differences between Hibernate 3 and Hibernate 4.
+This quickstart performs the same functions as the [hibernate3](../hibernate3/README.md) quickstart, but uses Hibernate 4 for database access. Compare this quickstart to the [hibernate3](../hibernate3/README.md) quickstart to see the code changes needed to run with Hibernate 4. 
 
  _Note: This quickstart uses the H2 database included with JBoss EAP 6. It is a lightweight, relational example datasource that is used for examples only. It is not robust or scalable and should NOT be used in a production environment!_
 
@@ -58,7 +58,7 @@ For example:
          </exclusions>
       </dependency>
 
-Please note that if you are working with Hibernate 3, the process is different. You will need to bundle the jars since JBoss EAP 6 does not ship with Hibernate 3. Refer to the `hibernate3` quickstart for details on how to bundle the JARs.
+Please note that if you are working with Hibernate 3, the process is different. You will need to bundle the JARs since JBoss EAP 6 does not ship with Hibernate 3. Refer to the `hibernate3` quickstart for details on how to bundle the JARs.
 
 
 Start the JBoss EAP Server
@@ -111,13 +111,13 @@ Undeploy the Archive
 
 Run the Quickstart in JBoss Developer Studio or Eclipse
 -------------------------------------
-You can also start the server and deploy the quickstarts from Eclipse using JBoss tools. For more information, see [Use JBoss Developer Studio or Eclipse to Run the Quickstarts](https://github.com/jboss-developer/jboss-developer-shared-resources/blob/master/guides/USE_JDBS.md#use-jboss-developer-studio-or-eclipse-to-run-the-quickstarts) 
+You can also start the server and deploy the quickstarts or run the Arquillian tests from Eclipse using JBoss tools. For more information, see [Use JBoss Developer Studio or Eclipse to Run the Quickstarts](https://github.com/jboss-developer/jboss-developer-shared-resources/blob/master/guides/USE_JBDS.md#use-jboss-developer-studio-or-eclipse-to-run-the-quickstarts) 
 
 
 Debug the Application
 ------------------------------------
 
-If you want to debug the source code or look at the Javadocs of any library in the project, run either of the following commands to pull them into your local repository. The IDE should then detect them.
+If you want to debug the source code of any library in the project, run the following command to pull the source into your local repository. The IDE should then detect it.
 
         mvn dependency:sources
-        mvn dependency:resolve -Dclassifier=javadoc
+

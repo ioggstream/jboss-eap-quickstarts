@@ -1,23 +1,23 @@
-ejb-timer: EJB Timers example - @Schedule and @Timeout
+ejb-timer: Example of EJB Timer Service - @Schedule and @Timeout
 ===========================================
 Author: Ondrej Zizka <ozizka@redhat.com>  
 Level: Beginner  
 Technologies: EJB 3.1 Timer  
-Summary: Demonstrates how to use EJB 3.1 Timer (@Schedule and @Timeout) with JBoss EAP.  
+Summary: The `ejb-timer` quickstart demonstrates how to use the EJB 3.1 timer service `@Schedule` and `@Timeout` annotations with JBoss EAP.  
 Target Product: EAP  
-Product Versions: EAP 6.1, EAP 6.2, EAP 6.3  
+Product Versions: EAP 6.1, EAP 6.2, EAP 6.3, EAP 6.4  
 Source: <https://github.com/jboss-developer/jboss-eap-quickstarts/>  
 
 What is it?
 -----------
 
-Demonstrates how to use EJB 3.1 Timer (@Schedule and @Timeout) with JBoss EAP.
+The `ejb-timer` quickstart demonstrates how to use the EJB 3.1 timer service with Red Hat JBoss Enterprise Application Platform. This example creates a timer service that uses the `@Schedule` and `@Timeout` annotations. 
 
 
-Features used:
+The following EJB 3.1 Timer services are demonstrated:
 
- * Usage of `@Schedule`
- * Usage of `@Timeout`
+ * `@Schedule`: Uses this annotation to mark a method to be executed according to the calendar schedule specified in the attributes of the annotation. This example schedules a message to be printed to the server console every 6 seconds.
+ * `@Timeout`: Uses this annotation to mark a method to execute when a programmatic timer goes off. This example sets the timer to go off every 3 seconds, at which point the method prints a message to the server console.
  
 
 System requirements
@@ -64,18 +64,24 @@ Access the application
 This application only prints messages to stdout.
 To see it working, check the server log. You should see similar output:
 
-    ...
-    18:33:36,004 INFO  [stdout] (EJB default - 7) Hi from the EJB timer example!
-    18:33:38,003 INFO  [stdout] (EJB default - 8) Hi from the EJB timer example!
-    18:33:40,002 INFO  [stdout] (EJB default - 9) Hi from the EJB timer example!
-    18:33:42,002 INFO  [stdout] (EJB default - 10) Hi from the EJB timer example!
-    18:33:44,003 INFO  [stdout] (EJB default - 1) Hi from the EJB timer example!
-    18:33:46,004 INFO  [stdout] (EJB default - 2) Hi from the EJB timer example!
-    18:33:48,003 INFO  [stdout] (EJB default - 3) Hi from the EJB timer example!
-    ...
+    INFO  [stdout] (EJB default - 10) ScheduleExample.doWork() invoked at 2014.11.25 AD at 11:57:12 EST
+    INFO  [stdout] (EJB default - 2) TimeoutExample.scheduler() EJB timer service timeout at 2014.11.25 AD at 11:57:12 EST
+    INFO  [stdout] (EJB default - 4) TimeoutExample.scheduler() EJB timer service timeout at 2014.11.25 AD at 11:57:15 EST
+    INFO  [stdout] (EJB default - 3) TimeoutExample.scheduler() EJB timer service timeout at 2014.11.25 AD at 11:57:18 EST
+    INFO  [stdout] (EJB default - 5) ScheduleExample.doWork() invoked at 2014.11.25 AD at 11:57:18 EST
+    INFO  [stdout] (EJB default - 7) TimeoutExample.scheduler() EJB timer service timeout at 2014.11.25 AD at 11:57:21 EST
+    INFO  [stdout] (EJB default - 9) TimeoutExample.scheduler() EJB timer service timeout at 2014.11.25 AD at 11:57:24 EST
+    INFO  [stdout] (EJB default - 6) ScheduleExample.doWork() invoked at 2014.11.25 AD at 11:57:24 EST
+    INFO  [stdout] (EJB default - 8) TimeoutExample.scheduler() EJB timer service timeout at 2014.11.25 AD at 11:57:27 EST
+    INFO  [stdout] (EJB default - 1) ScheduleExample.doWork() invoked at 2014.11.25 AD at 11:57:30 EST
+    INFO  [stdout] (EJB default - 10) TimeoutExample.scheduler() EJB timer service timeout at 2014.11.25 AD at 11:57:30 EST
+    INFO  [stdout] (EJB default - 2) TimeoutExample.scheduler() EJB timer service timeout at 2014.11.25 AD at 11:57:33 EST
+    INFO  [stdout] (EJB default - 4) ScheduleExample.doWork() invoked at 2014.11.25 AD at 11:57:36 EST
+    INFO  [stdout] (EJB default - 3) TimeoutExample.scheduler() EJB timer service timeout at 2014.11.25 AD at 11:57:36 EST
+    INFO  [stdout] (EJB default - 5) TimeoutExample.scheduler() EJB timer service timeout at 2014.11.25 AD at 11:57:39 EST
+    INFO  [stdout] (EJB default - 7) ScheduleExample.doWork() invoked at 2014.11.25 AD at 11:57:42 EST
 
-The parentheses contain name of thread executing the particular invocation.
-There are pre-created threads in thread pool, and they are rotated. Hence the changing number.
+Existing threads in the thread pool handle the invocations. They are rotated and the name of the thread that handles the invocation is printed within the parenthesis `(EJB Default - #)`.
 
 
 Undeploy the Archive
@@ -91,8 +97,8 @@ Undeploy the Archive
 Debug the Application
 ------------------------------------
 
-If you want to debug the source code or look at the Javadocs of any library in the project, 
-run either of the following commands to pull them into your local repository. The IDE should then detect them.
+If you want to debug the source code of any library in the project, 
+run the following command to pull the source into your local repository. The IDE should then detect it.
 
         mvn dependency:sources
-        mvn dependency:resolve -Dclassifier=javadoc
+

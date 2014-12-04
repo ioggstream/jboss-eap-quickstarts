@@ -1,19 +1,23 @@
-xml-jaxp: Demonstrates How to Upload and Parse an XML File Using DOM or SAX
+xml-jaxp: Upload and Parse an XML File Using DOM or SAX
 ========================
 Author: Bartosz Baranowski  
 Level: Intermediate  
 Technologies: JAXP, SAX, DOM, Servlet  
-Summary: Upload, validation and parsing of XML using SAX or DOM  
+Summary: The `xml-jaxp` quickstart demonstrates how to use Servlet and JSF to upload an XML file to JBoss EAP and validate and parse it using DOM or SAX.  
 Target Product: EAP  
-Product Versions: EAP 6.1, EAP 6.2, EAP 6.3  
+Product Versions: EAP 6.1, EAP 6.2, EAP 6.3, EAP 6.4  
 Source: <https://github.com/jboss-developer/jboss-eap-quickstarts/>  
 
 What is it?
 -----------
 
-This is a simple JSF 2.0, Servlet 3.0 and Java EE JAXP example. Its purpose is to demonstrate how you can use Servlet and JSF to upload an XML file to *JBoss EAP* and parse it using DOM or SAX, both of which are built in to Java.
+The `xml-jaxp` quickstart is a simple JSF 2.1, Servlet 3.0 and Java EE JAXP example. Its purpose is to demonstrate how you can use Servlet and JSF to upload an XML file to *Red Hat JBoss Enterprise Application Platform* and parse it using DOM or SAX, both of which are built into Java. It also shows how to use modules available in JBoss EAP.
 
-It also shows how to use modules available in JBoss EAP.
+This quickstart provides an example XML schema and document file to use when testing this quickstart.
+
+* The XML schema is located here: `QUICKSTART_HOME/src/main/resources/catalog.xsd` 
+* The XML document is located here: `QUICKSTART_HOME/src/main/resources/catalog.xml`
+
  
 System requirements
 -------------------
@@ -58,6 +62,24 @@ Access the application
 
 The application will be running at the following URL: <http://localhost:8080/jboss-xml-jaxp/>.
 
+To test the quickstart, follow these steps.
+
+1. Click the `Browse` button and navigate to the `QUICKSTART_HOME/src/main/resources/catalog.xml` file.
+2. Click the `Upload` button. The XML file content is parsed and displayed on the page. 
+3. You should see the following output in the server console that shows the DOMXMLParser was used:
+
+        INFO  [stdout] (http-/127.0.0.1:8080-1) Parsing the document using the DOMXMLParser!
+
+To enable the alternative SAXXMLParser parser:
+
+1. Remove the comments that surround the alternate parser element in the `WEB-INF/beans.xml` file.
+2. Redeploy the application using the instructions above and access the application in a browser at the following URL:  <http://localhost:8080/jboss-xml-jaxp/>.
+3. Click the `Browse` button and navigate to the `QUICKSTART_HOME/src/main/resources/catalog.xml` file.
+4. Click the `Upload` button. The XML file content is parsed and displayed on the page. 
+5. You should now see following output in the server console:
+
+        INFO  [stdout] (http-/127.0.0.1:8080-1) Parsing the document using the SAXXMLParser!
+
 
 Undeploy the Archive
 --------------------
@@ -71,14 +93,14 @@ Undeploy the Archive
 
 Run the Quickstart in JBoss Developer Studio or Eclipse
 -------------------------------------
-You can also start the server and deploy the quickstarts from Eclipse using JBoss tools. For more information, see [Use JBoss Developer Studio or Eclipse to Run the Quickstarts](https://github.com/jboss-developer/jboss-developer-shared-resources/blob/master/guides/USE_JDBS.md#use-jboss-developer-studio-or-eclipse-to-run-the-quickstarts) 
+You can also start the server and deploy the quickstarts or run the Arquillian tests from Eclipse using JBoss tools. For more information, see [Use JBoss Developer Studio or Eclipse to Run the Quickstarts](https://github.com/jboss-developer/jboss-developer-shared-resources/blob/master/guides/USE_JBDS.md#use-jboss-developer-studio-or-eclipse-to-run-the-quickstarts) 
 
 
 Debug the Application
 ------------------------------------
 
-If you want to debug the source code or look at the Javadocs of any library in the project, run either of the following commands to pull them into your local repository. The IDE should then detect them.
+If you want to debug the source code of any library in the project, run the following command to pull the source into your local repository. The IDE should then detect it.
 
 
         mvn dependency:sources
-        mvn dependency:resolve -Dclassifier=javadoc
+

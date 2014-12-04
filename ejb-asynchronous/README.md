@@ -1,22 +1,22 @@
-ejb-asynchronous:  An application with an EJB with asynchronous methods to demonstrate how it works
+ejb-asynchronous: EJB with asynchronous methods
 ======================================================
 Author: Wolf-Dieter Fink  
 Level: Advanced  
-Technologies: EJB  
-Summary: Demonstrates asynchronous EJB invocations.  
+Technologies: Asynchronous EJB  
+Summary: The `ejb-asynchronous` quickstart demonstrates the behavior of asynchronous EJB invocations by a deployed EJB and a remote client and how to handle errors.  
 Target Product: EAP  
-Product Versions: EAP 6.1, EAP 6.2, EAP 6.3  
+Product Versions: EAP 6.1, EAP 6.2, EAP 6.3, EAP 6.4  
 Source: <https://github.com/jboss-developer/jboss-eap-quickstarts/>  
 
 What is it?
 -----------
 
-This is a quickstart to demonstrate the behavior of asynchronous EJB invocations. The methods are invoked by both an EJB in the deployment and by a remote client. The quickstart also shows error handling if the asynchronous method invocation fails.
+The `ejb-asynchronous` quickstart demonstrates the behavior of asynchronous EJB invocations. The methods are invoked by both an EJB in the deployment and by a remote client. The quickstart also shows error handling if the asynchronous method invocation fails.
 
-The example is composed of 2 maven modules, each with a shared parent. The modules are as follows:
+The example is composed of 2 Maven modules, each with a shared parent. The modules are as follows:
 
 1. `ejb`: This module contains the EJB's and will be deployed to the server
-2. `client` : This module contains a remote ejb client
+2. `client` : This module contains a remote EJB client
 
 The root `pom.xml` builds each of the submodules in the above order and deploys the archive to the server.
 
@@ -31,8 +31,6 @@ All you need to build this project is Java 6.0 (Java SDK 1.6) or later, Maven 3.
  
 Configure Maven
 ---------------
-
-You can copy or link to the Maven configuration information in the README file in the root folder of the quickstarts. For example:
 
 If you have not yet done so, you must [Configure Maven](https://github.com/jboss-developer/jboss-developer-shared-resources/blob/master/guides/CONFIGURE_MAVEN.md#configure-maven-to-build-and-deploy-the-quickstarts) before testing the quickstarts.
 
@@ -58,7 +56,7 @@ _NOTE: The following build command assumes you have configured your Maven user s
 3. Type this command to build and deploy the archive:
 
         mvn clean install jboss-as:deploy
-4. This will deploy `service/target/jboss-ejb-asynchronous.jar` to the running instance of the server.
+4. This will deploy `ejb/target/jboss-ejb-asynchronous-ejb.jar` to the running instance of the server.
  
 Check whether the application is deployed successfully.
 
@@ -107,14 +105,14 @@ Undeploy the Archive
 
 Run the Quickstart in JBoss Developer Studio or Eclipse
 -------------------------------------
-You can also start the server and deploy the quickstarts from Eclipse using JBoss tools. For more information, see [Use JBoss Developer Studio or Eclipse to Run the Quickstarts](https://github.com/jboss-developer/jboss-developer-shared-resources/blob/master/guides/USE_JDBS.md#use-jboss-developer-studio-or-eclipse-to-run-the-quickstarts) 
+You can also start the server and deploy the quickstarts or run the Arquillian tests from Eclipse using JBoss tools. For more information, see [Use JBoss Developer Studio or Eclipse to Run the Quickstarts](https://github.com/jboss-developer/jboss-developer-shared-resources/blob/master/guides/USE_JBDS.md#use-jboss-developer-studio-or-eclipse-to-run-the-quickstarts) 
 
 Debug the Application
 ------------------------------------
 
-If you want to debug the source code or look at the Javadocs of any library in the project, run either of the following commands to pull them into your local repository. The IDE should then detect them.
+If you want to debug the source code of any library in the project, run the following command to pull the source into your local repository. The IDE should then detect it.
 
     mvn dependency:sources
-    mvn dependency:resolve -Dclassifier=javadoc
+   
 
 ------------------------------------

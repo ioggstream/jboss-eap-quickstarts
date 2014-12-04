@@ -3,15 +3,15 @@ helloworld-singleton: Helloworld Using a Singleton EJB
 Author: Serge Pagop  
 Level: Beginner  
 Technologies: EJB, Singleton  
-Summary: Demonstrates the use of an EJB 3.1 Singleton Session Bean, instantiated once, maintaining state for the life of the session  
+Summary: The `helloworld-singleton` quickstart demonstrates an *EJB 3.1 Singleton Bean* that is instantiated once and maintains state for the life of the session.  
 Target Product: EAP  
-Product Versions: EAP 6.1, EAP 6.2, EAP 6.3  
+Product Versions: EAP 6.1, EAP 6.2, EAP 6.3, EAP 6.4  
 Source: <https://github.com/jboss-developer/jboss-eap-quickstarts/>  
 
 What is it?
 -----------
 
-This quickstart demonstrates the use of an *EJB 3.1 Singleton Bean* in Red Hat JBoss Enterprise Application Platform.
+The `helloworld-singleton` quickstart demonstrates the use of an *EJB 3.1 Singleton Bean* in Red Hat JBoss Enterprise Application Platform. It is instantiated once and maintains its state for the life of the session.
 
 System requirements
 -------------------
@@ -75,13 +75,13 @@ Undeploy the Archive
 
 Run the Quickstart in JBoss Developer Studio or Eclipse
 -------------------------------------
-You can also start the server and deploy the quickstarts from Eclipse using JBoss tools. For more information, see [Use JBoss Developer Studio or Eclipse to Run the Quickstarts](https://github.com/jboss-developer/jboss-developer-shared-resources/blob/master/guides/USE_JDBS.md#use-jboss-developer-studio-or-eclipse-to-run-the-quickstarts) 
+You can also start the server and deploy the quickstarts or run the Arquillian tests from Eclipse using JBoss tools. For more information, see [Use JBoss Developer Studio or Eclipse to Run the Quickstarts](https://github.com/jboss-developer/jboss-developer-shared-resources/blob/master/guides/USE_JBDS.md#use-jboss-developer-studio-or-eclipse-to-run-the-quickstarts) 
 
 
 Debug the Application
 ------------------------------------
 
-If you want to debug the source code or look at the Javadocs of any library in the project, run either of the following commands to pull them into your local repository. The IDE should then detect them.
+If you want to debug the source code of any library in the project, run the following command to pull the source into your local repository. The IDE should then detect it.
 
         mvn dependency:sources
-        mvn dependency:resolve -Dclassifier=javadoc
+

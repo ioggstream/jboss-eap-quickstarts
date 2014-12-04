@@ -1,11 +1,11 @@
-bmt: Bean Managed Transactions - Stepping Outside the Container (with JPA and JTA)
+bmt: Bean Managed Transactions with JPA and JTA
 =================================================================================
 Author: Mike Musgrove  
 Level: Intermediate  
-Technologies: EJB, Bean Managed Transactions (BMT)  
-Summary: EJB that demonstrates bean-managed transactions (BMT)  
+Technologies: EJB, BMT  
+Summary: The `bmt` quickstart demonstrates Bean-Managed Transactions (BMT), showing how to manually manage transaction demarcation while accessing JPA entities.  
 Target Product: EAP  
-Product Versions: EAP 6.1, EAP 6.2, EAP 6.3  
+Product Versions: EAP 6.1, EAP 6.2, EAP 6.3, EAP 6.4  
 Source: <https://github.com/jboss-developer/jboss-eap-quickstarts/>  
 
 What is it?
@@ -13,7 +13,7 @@ What is it?
 
 On occasion, the application developer requires finer grained control over the lifecycle of JTA transactions and JPA Entity Managers than the defaults provided by the Java EE container. This example shows how the developer can override these defaults and take control of aspects of the lifecycle of JPA and transactions.
 
-This example demonstrates how to manually manage transaction demarcation while accessing JPA entities in Red Hat JBoss Enterprise Application Platform.
+The `bmt` quickstart demonstrates how to manually manage transaction demarcation while accessing JPA entities in Red Hat JBoss Enterprise Application Platform.
 
 When you run this example, you will be provided with a `Use bean managed Entity Managers` checkbox.
 * If you check the checkbox, it shows the developer responsibilities when injecting an Entity Manager into a managed (stateless) bean.
@@ -95,13 +95,13 @@ Undeploy the Archive
 
 Run the Quickstart in JBoss Developer Studio or Eclipse
 -------------------------------------
-You can also start the server and deploy the quickstarts from Eclipse using JBoss tools. For more information, see [Use JBoss Developer Studio or Eclipse to Run the Quickstarts](https://github.com/jboss-developer/jboss-developer-shared-resources/blob/master/guides/USE_JDBS.md#use-jboss-developer-studio-or-eclipse-to-run-the-quickstarts) 
+You can also start the server and deploy the quickstarts or run the Arquillian tests from Eclipse using JBoss tools. For more information, see [Use JBoss Developer Studio or Eclipse to Run the Quickstarts](https://github.com/jboss-developer/jboss-developer-shared-resources/blob/master/guides/USE_JBDS.md#use-jboss-developer-studio-or-eclipse-to-run-the-quickstarts) 
 
 
 Debug the Application
 ------------------------------------
 
-If you want to debug the source code or look at the Javadocs of any library in the project, run either of the following commands to pull them into your local repository. The IDE should then detect them.
+If you want to debug the source code of any library in the project, run the following command to pull the source into your local repository. The IDE should then detect it.
 
         mvn dependency:sources
-        mvn dependency:resolve -Dclassifier=javadoc
+

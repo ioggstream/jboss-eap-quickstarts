@@ -1,36 +1,36 @@
-servlet-security:  Using Java EE Declarative Security to Control Access to Servlet 3
+servlet-security:  Using Java EE Declarative Security to Control Servlet Access
 ====================
 Author: Sherif F. Makary, Pedro Igor  
 Level: Intermediate  
 Technologies: Servlet, Security  
-Summary: Demonstrates how to use Java EE declarative security to control access to Servlet 3  
+Summary: The `servlet-security` quickstart demonstrates the use of Java EE declarative security to control access to Servlets and Security in JBoss EAP.  
 Target Product: EAP  
-Product Versions: EAP 6.1, EAP 6.2, EAP 6.3  
+Product Versions: EAP 6.1, EAP 6.2, EAP 6.3, EAP 6.4  
 Source: <https://github.com/jboss-developer/jboss-eap-quickstarts/>  
 
 What is it?
 -----------
 
-This example demonstrates the use of Java EE declarative security to control access to Servlets and Security in JBoss Enterprise Application Platform.
+The `servlet-security` quickstart demonstrates the use of Java EE declarative security to control access to Servlets and Security in Red Hat JBoss Enterprise Application Platform.
 
 When you deploy this example, two users are automatically created for you: user `quickstartUser` with password `quickstartPwd1!` and user `guest` with password `guestPwd1!`. This data is located in the `src/main/resources/import.sql` file. 
 
 This quickstart takes the following steps to implement Servlet security:
 
-1. Define a security domain in the `standalone.xml` configuration file using the Database JAAS LoginModule.
-2. Add an application user with access rights to the application
+1. Defines a security domain in the `standalone.xml` configuration file using the Database JAAS LoginModule.
+2. Adds an application user with access rights to the application.
 
         User Name: quickstartUser
         Password: quickstartPwd1!
         Role: quickstarts
-3. Add another user with no access rights to the application.
+3. Adds another user with no access rights to the application.
 
         User Name: guest
         Password: guestPwd1!
         Role: notauthorized
-4. Add a security domain reference to `WEB-INF/jboss-web.xml`.
-5. Add a security constraint to the `WEB-INF/web.xml` .
-6. Add a security annotation to the EJB declaration.
+4. Adds a security domain reference to `WEB-INF/jboss-web.xml`.
+5. Adds a security constraint to the `WEB-INF/web.xml` .
+6. Adds a security annotation to the EJB declaration.
 
 Please note the allowed user role `quickstarts` in the annotation `@RolesAllowed` is the same as the user role defined in step 2.
 
@@ -76,12 +76,13 @@ You should see the following result when you run the script:
 
         The batch executed successfully.
         {"outcome" => "success"}
+5. Stop the JBoss EAP server.
 
 
 Review the Modified Server Configuration
 -----------------------------------
 
-If you want to review and understand newly added XML configuration, stop the JBoss EAP server and open the  `EAP_HOME/standalone/configuration/standalone.xml` file. 
+After stopping the server, open the `EAP_HOME/standalone/configuration/standalone.xml` file and review the changes.
 
 The following `servlet-security-quickstart` security-domain element was added to the `security` subsystem.
 
@@ -193,13 +194,15 @@ This script removes the `servlet-security-quickstart` security domain from the `
 
 Run the Quickstart in JBoss Developer Studio or Eclipse
 -------------------------------------
-You can also start the server and deploy the quickstarts from Eclipse using JBoss tools. For more information, see [Use JBoss Developer Studio or Eclipse to Run the Quickstarts](https://github.com/jboss-developer/jboss-developer-shared-resources/blob/master/guides/USE_JDBS.md#use-jboss-developer-studio-or-eclipse-to-run-the-quickstarts) 
+You can also start the server and deploy the quickstarts or run the Arquillian tests from Eclipse using JBoss tools. For more information, see [Use JBoss Developer Studio or Eclipse to Run the Quickstarts](https://github.com/jboss-developer/jboss-developer-shared-resources/blob/master/guides/USE_JBDS.md#use-jboss-developer-studio-or-eclipse-to-run-the-quickstarts) 
+
+_NOTE:_ Be sure to configure the security domain by running the JBoss CLI commands as described in the section above entitled *Configure the JBoss EAP Server*. Stop the server at the end of that step.
 
 
 Debug the Application
 ------------------------------------
 
-If you want to debug the source code or look at the Javadocs of any library in the project, run either of the following commands to pull them into your local repository. The IDE should then detect them.
+If you want to debug the source code of any library in the project, run the following command to pull the source into your local repository. The IDE should then detect it.
 
       mvn dependency:sources
-      mvn dependency:resolve -Dclassifier=javadoc
+     

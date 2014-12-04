@@ -1,17 +1,17 @@
-helloworld-jms: HelloWorld JMS Example
+helloworld-jms: Helloworld JMS Example
 ======================
 Author: Weston Price  
 Level: Intermediate  
 Technologies: JMS  
-Summary: Demonstrates the use of a standalone (Java SE) JMS client  
+Summary: The `helloworld-jms` quickstart demonstrates the use of external JMS clients with JBoss EAP.  
 Target Product: EAP  
-Product Versions: EAP 6.1, EAP 6.2, EAP 6.3  
+Product Versions: EAP 6.1, EAP 6.2, EAP 6.3, EAP 6.4  
 Source: <https://github.com/jboss-developer/jboss-eap-quickstarts/>  
 
 What is it?
 -----------
 
-This quickstart demonstrates the use of external JMS clients with Red Hat JBoss Enterprise Application Platform.
+The `helloworld-jms` quickstart demonstrates the use of external JMS clients with Red Hat JBoss Enterprise Application Platform.
 
 It contains the following:
 
@@ -41,7 +41,7 @@ This quickstart uses secured management interfaces and requires that you create 
 
 | **UserName** | **Realm** | **Password** | **Roles** |
 |:-----------|:-----------|:-----------|:-----------|
-| quickstartUser| ApplicationRealm | quickstartPwd!!| guest |
+| quickstartUser| ApplicationRealm | quickstartPwd1!| guest |
 
 To add the application user, open a command prompt and type the following command:
 
@@ -49,13 +49,13 @@ To add the application user, open a command prompt and type the following comman
         For Windows: EAP_HOME\bin\add-user.bat  -a -u 'quickstartUser' -p 'quickstartPwd1!' -g 'guest'
 
 If you prefer, you can use the add-user utility interactively. 
-For an example of how to use the add-user utility, see instructions in the root README file located here: [Add an Application User](https://github.com/jboss-developer/jboss-developer-shared-resources/blob/master/guides/CREATE_USERS.md#add-an-application-user).
+For an example of how to use the add-user utility, see the instructions located here: [Add an Application User](https://github.com/jboss-developer/jboss-developer-shared-resources/blob/master/guides/CREATE_USERS.md#add-an-application-user).
 
 
 Configure the JBoss EAP Server
 ---------------------------
 
-You configure the the JMS `test` queue by running JBoss CLI commands. For your convenience, this quickstart batches the commands into a `configure-jms.cli` script provided in the root directory of this quickstart. 
+You configure the JMS `test` queue by running JBoss CLI commands. For your convenience, this quickstart batches the commands into a `configure-jms.cli` script provided in the root directory of this quickstart. 
 
 1. Before you begin, back up your server configuration file
     * If it is running, stop the JBoss EAP server.
@@ -71,17 +71,17 @@ You configure the the JMS `test` queue by running JBoss CLI commands. For your c
 
         For Linux: EAP_HOME/bin/jboss-cli.sh --connect --file=configure-jms.cli 
         For Windows: EAP_HOME\bin\jboss-cli.bat --connect --file=configure-jms.cli 
-You should see the following result when you run the script:
+   You should see the following result when you run the script:
 
         The batch executed successfully.
         {"outcome" => "success"}
-
+5. Stop the JBoss EAP server.
 
 
 Review the Modified Server Configuration
 -----------------------------------
 
-If you want to review and understand newly added XML configuration, stop the JBoss EAP server and open the  `EAP_HOME/standalone/configuration/standalone-full.xml` file. 
+After stopping the server, open the `EAP_HOME/standalone/configuration/standalone-full.xml` file and review the changes.
 
 The following `testQueue` jms-queue was configured in a new `<jms-destinations>` element under the hornetq-server section of the `messaging` subsystem.
 
@@ -122,7 +122,7 @@ To run the quickstart from the command line:
 Investigate the Console Output
 -------------------------
 
-If the maven command is successful, with the default configuration you will see output similar to this:
+If the Maven command is successful, with the default configuration you will see output similar to this:
 
     Mar 14, 2012 1:38:58 PM org.jboss.as.quickstarts.jms.HelloWorldJMSClient main
     INFO: Attempting to acquire connection factory "jms/RemoteConnectionFactory"
@@ -137,7 +137,7 @@ If the maven command is successful, with the default configuration you will see 
     Mar 14, 2012 1:38:58 PM org.jboss.as.quickstarts.jms.HelloWorldJMSClient main
     INFO: Received message with content Hello, World!
 
-_Note_: After the above INFO message, you may see the following error. You can ignore the error as it is a well known error message and does not indicate the maven command was unsuccessful in any way. 
+_Note_: After the above INFO message, you may see the following error. You can ignore the error as it is a well known error message and does not indicate the Maven command was unsuccessful in any way. 
 
     Mar 14, 2012 1:38:58 PM org.jboss.naming.remote.protocol.v1.RemoteNamingStoreV1$MessageReceiver handleEnd
     ERROR: Channel end notification received, closing channel Channel ID cd114175 (outbound) of Remoting connection 00392fe8 to localhost/127.0.0.1:4447
@@ -206,7 +206,7 @@ You can remove the JMS configuration by running the  `remove-jms.cli` script pro
 
         For Linux: EAP_HOME/bin/jboss-cli.sh --connect --file=remove-jms.cli 
         For Windows: EAP_HOME\bin\jboss-cli.bat --connect --file=remove-jms.cli 
-This script removes the `test` queue from the `messaging` subsystem in the server configuration. You should see the following result when you run the script:
+   This script removes the `test` queue from the `messaging` subsystem in the server configuration. You should see the following result when you run the script:
 
         The batch executed successfully.
         {"outcome" => "success"}
@@ -219,15 +219,20 @@ This script removes the `test` queue from the `messaging` subsystem in the serve
 
 Run the Quickstart in JBoss Developer Studio or Eclipse
 -------------------------------------
-You can also start the server and deploy the quickstarts from Eclipse using JBoss tools. For more information, see [Use JBoss Developer Studio or Eclipse to Run the Quickstarts](https://github.com/jboss-developer/jboss-developer-shared-resources/blob/master/guides/USE_JDBS.md#use-jboss-developer-studio-or-eclipse-to-run-the-quickstarts) 
+You can also start the server and deploy the quickstarts or run the Arquillian tests from Eclipse using JBoss tools. For more information, see [Use JBoss Developer Studio or Eclipse to Run the Quickstarts](https://github.com/jboss-developer/jboss-developer-shared-resources/blob/master/guides/USE_JBDS.md#use-jboss-developer-studio-or-eclipse-to-run-the-quickstarts) 
+
+_NOTE:_
+
+* Be sure to configure the JMS `test` queue by running the JBoss CLI commands as described in the section above entitled *Configure the JBoss EAP Server*. Stop the server at the end of that step.
+* Within JBoss Developer Studio, be sure to define a server runtime environment that uses the `standalone-full.xml` configuration file.
 
 
 Debug the Application
 ------------------------------------
 
-If you want to debug the source code or look at the Javadocs of any library in the project, run either of the following commands to pull them into your local repository. The IDE should then detect them.
+If you want to debug the source code of any library in the project, run the following command to pull the source into your local repository. The IDE should then detect it.
 
         mvn dependency:sources
-        mvn dependency:resolve -Dclassifier=javadoc
+
 
  

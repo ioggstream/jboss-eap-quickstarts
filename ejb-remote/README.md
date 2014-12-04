@@ -2,16 +2,16 @@ ejb-remote: Remote EJB Client Example
 =====================================
 Author: Jaikiran Pai, Mike Musgrove  
 Level: Intermediate  
-Technologies: EJB  
-Summary: Shows how to access an EJB from a remote Java client program using JNDI  
+Technologies: EJB, JNDI  
+Summary: The `ejb-remote` quickstart uses *EJB 3.1* and *JNDI* to demonstrate how to access an EJB, deployed to JBoss EAP, from a remote Java client application.  
 Target Product: EAP  
-Product Versions: EAP 6.1, EAP 6.2, EAP 6.3  
+Product Versions: EAP 6.1, EAP 6.2, EAP 6.3, EAP 6.4  
 Source: <https://github.com/jboss-developer/jboss-eap-quickstarts/>  
 
 What is it?
 -----------
 
-This example shows how to access an EJB from a remote Java client application. It demonstrates the use of *EJB 3.1* and *JNDI* in Red Hat JBoss Enterprise Application Platform.
+The `ejb-remote` quickstart shows how to access an EJB from a remote Java client application. It demonstrates the use of *EJB 3.1* and *JNDI* in Red Hat JBoss Enterprise Application Platform.
 
 There are two components to this example: 
 
@@ -59,15 +59,15 @@ Since this quickstart builds two separate components, you can not use the standa
 3. Build and install the server side component:
     * Navigate to the server-side subdirectory:
 
-        cd server-side
+            cd server-side
     * Build the EJB and client interfaces JARs and install them in your local Maven repository.
 
             mvn clean install        
-    * Deploy the EJB JAR to your server. This maven goal will deploy `server-side/target/jboss-ejb-remote-server-side.jar`. You can check the JBoss EAP server console to see information messages regarding the deployment.
+    * Deploy the EJB JAR to your server. This Maven goal will deploy `server-side/target/jboss-ejb-remote-server-side.jar`. You can check the JBoss EAP server console to see information messages regarding the deployment.
 
             mvn jboss-as:deploy
 4. Build and run the client application
-    * Navigate to the server-side subdirectory:
+    * Navigate to the client subdirectory:
 
             cd ../client
     * Compile the client code
@@ -157,13 +157,13 @@ To undeploy the server side component from the JBoss EAP server:
 
 Run the Quickstart in JBoss Developer Studio or Eclipse
 -------------------------------------
-You can also start the server and deploy the quickstarts from Eclipse using JBoss tools. For more information, see [Use JBoss Developer Studio or Eclipse to Run the Quickstarts](https://github.com/jboss-developer/jboss-developer-shared-resources/blob/master/guides/USE_JDBS.md#use-jboss-developer-studio-or-eclipse-to-run-the-quickstarts) 
+You can also start the server and deploy the quickstarts or run the Arquillian tests from Eclipse using JBoss tools. For more information, see [Use JBoss Developer Studio or Eclipse to Run the Quickstarts](https://github.com/jboss-developer/jboss-developer-shared-resources/blob/master/guides/USE_JBDS.md#use-jboss-developer-studio-or-eclipse-to-run-the-quickstarts) 
 
 
 Debug the Application
 ------------------------------------
 
-If you want to debug the source code or look at the Javadocs of any library in the project, run either of the following commands to pull them into your local repository. The IDE should then detect them.
+If you want to debug the source code of any library in the project, run the following command to pull the source into your local repository. The IDE should then detect it.
 
         mvn dependency:sources
-        mvn dependency:resolve -Dclassifier=javadoc
+

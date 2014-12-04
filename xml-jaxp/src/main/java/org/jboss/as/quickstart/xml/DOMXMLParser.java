@@ -87,6 +87,7 @@ public class DOMXMLParser extends XMLParser {
 
     @Override
     public List<Book> parseInternal(InputStream is) throws Exception {
+        System.out.println("Parsing the document using the DOMXMLParser!");
 
         Document document = this.builder.parse(is);
 
